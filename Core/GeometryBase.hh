@@ -2,7 +2,7 @@
 #define GM2GEOM_GEOMETRY_BASE_HH
 
 #include "art/Framework/Services/Registry/ServiceHandle.h"
-#include "gm2geom/Core/NewGeometry_service.hh"
+#include "gm2geom/Core/Geometry_service.hh"
 
 #include "fhiclcpp/ParameterSet.h"
 
@@ -15,7 +15,7 @@ namespace gm2geom {
       name(detName),
       p() 
     {
-      art::ServiceHandle <gm2geom::NewGeometryService> g;
+      art::ServiceHandle <gm2geom::GeometryService> g;
       p = g->getDetParSet(detName);
       
     }

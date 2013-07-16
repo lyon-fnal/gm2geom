@@ -10,10 +10,10 @@
 
 namespace gm2geom {
 
-  class NewGeometryService { 
+  class GeometryService { 
   public: 
-    NewGeometryService(fhicl::ParameterSet const&, art::ActivityRegistry&);
-    ~NewGeometryService();
+    GeometryService(fhicl::ParameterSet const&, art::ActivityRegistry&);
+    ~GeometryService();
 
     fhicl::ParameterSet getDetParSet(std::string const &);
     int getInt(std::string const &);

@@ -4,20 +4,20 @@
 // 
 // Developed by Brendan Kiburg, Adam Lyon Nov, 2012
 
-#include "NewGeometry_service.hh"
+#include "Geometry_service.hh"
 #include "art/Framework/Services/Registry/ServiceMacros.h"
 
-gm2geom::NewGeometryService::NewGeometryService(fhicl::ParameterSet const & p,
+gm2geom::GeometryService::GeometryService(fhicl::ParameterSet const & p,
 					art::ActivityRegistry &)
   : p_ ( p ) 
 {
 }
 
-gm2geom::NewGeometryService::~NewGeometryService(){
+gm2geom::GeometryService::~GeometryService(){
 
 }
 
-int gm2geom::NewGeometryService::getInt(std::string const & s){
+int gm2geom::GeometryService::getInt(std::string const & s){
   return p_.get<int>(s);
 }
 
@@ -25,12 +25,12 @@ int gm2geom::NewGeometryService::getInt(std::string const & s){
 // The Geometry Service assumes that individual detectors will be inside of the
 // fhicl Parameter Sets within Geometry . This method allows a user to extract
 // the parameter set by name
-fhicl::ParameterSet gm2geom::NewGeometryService::getDetParSet(std::string const & s){
+fhicl::ParameterSet gm2geom::GeometryService::getDetParSet(std::string const & s){
 
   fhicl::ParameterSet p = p_.get<fhicl::ParameterSet>(s);
   return p;
 
 }
 
-using gm2geom::NewGeometryService;
-DEFINE_ART_SERVICE(NewGeometryService)
+using gm2geom::GeometryService;
+DEFINE_ART_SERVICE(GeometryService)
