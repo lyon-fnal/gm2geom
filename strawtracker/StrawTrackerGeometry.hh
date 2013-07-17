@@ -12,7 +12,7 @@ using CLHEP::mm;
 using CLHEP::deg;
 using CLHEP::cm;
 
-namespace gm2strawtracker {
+namespace gm2geom {
   
   struct StrawTrackerGeometry : public gm2geom::GeometryBase {
     StrawTrackerGeometry(std::string const & detName="strawtracker");

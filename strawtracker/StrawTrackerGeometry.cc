@@ -6,7 +6,7 @@
 
 
 
-gm2strawtracker::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName) :
+gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName) :
   GeometryBase(detName),
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
   strawStationLocation( p.get<std::vector<double>>("strawStationLocation")),
@@ -61,14 +61,14 @@ gm2strawtracker::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & 
 }
 
 
-int gm2strawtracker::StrawTrackerGeometry::Plane(int station, int view, int layer) {
+int gm2geom::StrawTrackerGeometry::Plane(int station, int view, int layer) {
   
   return station*(strawView+strawLayers) + view*2 + layer;
   
 }
 
 
-double gm2strawtracker::StrawTrackerGeometry::wirePosition(int plane, int wire, int view){
+double gm2geom::StrawTrackerGeometry::wirePosition(int plane, int wire, int view){
   
   double x =  x_position_straw0[plane%4] + wire*dist_btwn_wires;
   if (view == 0) x = x - delta_x;
@@ -77,11 +77,11 @@ double gm2strawtracker::StrawTrackerGeometry::wirePosition(int plane, int wire, 
   return x;
 }
 
-double gm2strawtracker::StrawTrackerGeometry::yPosition(int plane){
+double gm2geom::StrawTrackerGeometry::yPosition(int plane){
   return y_position[plane%4];
 }
 
-void gm2strawtracker::StrawTrackerGeometry::print() const{
+void gm2geom::StrawTrackerGeometry::print() const{
   std::ostringstream oss;
   
   oss << "  strawStationHeight="<< strawStationHeight << "\n";
