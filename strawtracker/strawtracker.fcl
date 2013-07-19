@@ -49,16 +49,16 @@ strawtracker_geom : {
   spanningAngleOfTheStraw:  360. //deg
 
   
-  dist_btwn_wires: 5.55 //mm
-  layer_angle: 7.5 //deg
+  distBtwnWires: 5.55 //mm
+  layerAngle: 7.5 //deg
   
   //These are the positions of the straw in each layer
   //that is closest to the scallop edge as measured from
   //the corner which is closest to the scallop edge
   //and away from the calo. These measurements are taken off
   //3D-Models and are determined on the *bottom* manifold
-  x_position_straw0: [27.19, 29.96, 17.98, 15.21]
-  y_position: [39.36, 44.12, 60.91, 65.68]
+  xPositionStraw0: [27.19, 29.96, 17.98, 15.21]
+  yPosition: [39.36, 44.12, 60.91, 65.68]
   
   displayStation: true
   stationColor: [0.2, 0.6, 1.0, 1.0] //blue

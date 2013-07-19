@@ -25,8 +25,8 @@ namespace gm2geom {
     void print() const;
     
     int Plane(WireID wire);
-    double wirePosition(WireID wire);
-    double yPosition(WireID wire);
+    double wireXPosition(WireID wire);
+    double wireYPosition(WireID wire);
     CLHEP::Hep3Vector trackerPosition(WireID wire);
 
     std::vector<int> whichScallopLocations;
@@ -53,15 +53,15 @@ namespace gm2geom {
     double startAngleOfTheStraw;
     double spanningAngleOfTheStraw;
 
-    double dist_btwn_wires;
-    double layer_angle;
-    double delta_x;
+    double distBtwnWires;
+    double layerAngle;
+    double deltaX;
     
-    int number_of_stations; 
-    std::vector<double> straw_station_center_from_edge;
+    int numberOfStations;
+    std::vector<double> strawStationCenterFromEdge;
 
-    std::vector<double> x_position_straw0;
-    std::vector<double> y_position;
+    std::vector<double> xPositionStraw0;
+    std::vector<double> yPosition;
     
     const bool displayStation;
     std::vector<double> stationColor;

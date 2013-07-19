@@ -23,10 +23,10 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   heightOfTheStraw( p.get<double>("heightOfTheStraw") * cm),
   startAngleOfTheStraw( p.get<double>("startAngleOfTheStraw") * deg),
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
-  dist_btwn_wires( p.get<double>("dist_btwn_wires") *mm ),
-  layer_angle( p.get<double>("layer_angle") *deg),
-  x_position_straw0( p.get<std::vector<double>>("x_position_straw0")),
-  y_position( p.get<std::vector<double>>("y_position")),
+  distBtwnWires( p.get<double>("distBtwnWires") *mm ),
+  layerAngle( p.get<double>("layerAngle") *deg),
+  xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
+  yPosition( p.get<std::vector<double>>("yPosition")),
   displayStation( p.get<bool>("displayStation")),
   stationColor( p.get<std::vector<double>>("stationColor")),
   displayStraw( p.get<bool>("displayStraw")),
@@ -45,19 +45,19 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
 
-    straw_station_center_from_edge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] + strawStationPiping);
+    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] + strawStationPiping);
   }
   
-  lengthOfTheStraw = heightOfTheStraw/cos(layer_angle);
+  lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
   halfLengthOfTheStraw = lengthOfTheStraw/2;
   halfHeightOfTheStraw = heightOfTheStraw/2;
   
-  for (unsigned int i = 0; i<y_position.size(); i++){
-    y_position[i] = y_position[i] - strawStationWidthHalf[0];
+  for (unsigned int i = 0; i<yPosition.size(); i++){
+    yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
   }
   
-  delta_x = halfHeightOfTheStraw*tan(layer_angle);
-  number_of_stations = strawStationSize.size() * whichScallopLocations.size();
+  deltaX = halfHeightOfTheStraw*tan(layerAngle);
+  numberOfStations = strawStationSize.size() * whichScallopLocations.size();
 }
 
 
@@ -68,30 +68,30 @@ int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
 }
 
 
-double gm2geom::StrawTrackerGeometry::wirePosition(WireID wire){
+double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
   
   int plane = Plane(wire);
   
-  double x =  x_position_straw0[plane%4] + wire.getWire()*dist_btwn_wires;
-  if (wire.getView() == 0) x = x - delta_x;
-  else x = x+delta_x;
+  double x =  xPositionStraw0[plane%4] + wire.getWire()*distBtwnWires;
+  if (wire.getView() == 0) x = x - deltaX;
+  else x = x+deltaX;
   
   return x;
 }
 
-double gm2geom::StrawTrackerGeometry::yPosition(WireID wire){
+double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire){
   
   int plane = Plane(wire);
   
-  return y_position[plane%4];
+  return yPosition[plane%4];
 }
 
 
 CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire){
   
-  double x = wirePosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
+  double x = wireXPosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
   double y = 0;
-  double z = yPosition(wire) + strawStationLocation[wire.getStation()];
+  double z = wireYPosition(wire) + strawStationLocation[wire.getStation()];
   CLHEP::Hep3Vector trackerPosition(x,y,z);
   return trackerPosition;
 }
