@@ -87,12 +87,13 @@ double gm2geom::StrawTrackerGeometry::yPosition(WireID wire){
 }
 
 
-CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::TrackerPosition(WireID wire){
+CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire){
   
-  
-  std::cout<<wire.getView()<<std::endl;
-  CLHEP::Hep3Vector me(0,0,0);
-  return me;
+  double x = wirePosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
+  double y = 0;
+  double z = yPosition(wire) + strawStationLocation[wire.getStation()];
+  CLHEP::Hep3Vector trackerPosition(x,y,z);
+  return trackerPosition;
 }
 
 void gm2geom::StrawTrackerGeometry::print() const{

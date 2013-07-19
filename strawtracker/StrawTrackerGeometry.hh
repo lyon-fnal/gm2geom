@@ -27,8 +27,8 @@ namespace gm2geom {
     int Plane(WireID wire);
     double wirePosition(WireID wire);
     double yPosition(WireID wire);
-    CLHEP::Hep3Vector TrackerPosition(WireID wire);
-    
+    CLHEP::Hep3Vector trackerPosition(WireID wire);
+
     std::vector<int> whichScallopLocations;
     std::vector<double> strawStationLocation;
     std::vector<double> strawStationSize;
