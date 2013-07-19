@@ -2,41 +2,46 @@
 //
 // Values are in mm unless otherwise specified
 
+#include "geom/strawStationParameters.fcl"
+
 BEGIN_PROLOG
+
 strawtracker_geom : {
-    
 
   whichScallopLocations: [12]
-  //Station distance from calo edge
-  strawStationLocation: [756, 671, 586, 501, 416, 331, 246, 161, 61]
-  //Radial distance of the stations
-  strawStationSize: [85.0, 85.0, 85.0, 85.0, 85.0, 128.8, 128.8, 128.8, 128.8]
 
-  //To allow for some piping
-  strawStationPiping: 57.3
+
+  // Straw Station variable descriptions 
+  // Defined in strawStationParameter file that 
+  // you include at the top of this file. 
+  /////////////////////////////////////////////////////
   
-  //We'd like to follow the curve of the ring rather than the edge of the
-  //scallop so if there is room some stations can be pushed farther out
-  strawStationOffset: [0,5,13,20,23,0,0,0,0]
+  // strawStationLocation - Distance from the calo that the center of the station is placed.
+  // strawStationsSize - Radial size of the stations
+  // strawStationType - How many straws are in each layer (multiple of 8!)
+  // strawStationOffset - Stations follow the curve of the ring rather than the edge of the
+  //                     scallop so if there is room some stations can be pushed farther out
+  // strawStationWidth - Width of the station along the scallop line. Note the last station
+  //                    includes the overhang while the others are just the width of one side of the manifold
+  // strawStationPiping - To allow for some piping which pushes the stations farther away from the scallop edge.
+  // strawStationHeight - Full height of the station
   
-  //Determines how many straws are in each layer
-  strawStationType: [8,8,8,8,8,16,16,16,16]
+  //////////////////////////////////////////////////////
   
+  strawStationLocation:@local::strawStationLocation
+  strawStationSize:@local::strawStationSize
+  strawStationType:@local::strawStationType
+  strawStationOffset:@local::strawStationOffset
+  strawStationWidth:@local::strawStationWidth
+  strawStationPiping:@local::strawStationPiping
+  strawStationHeight:@local::strawStationHeight
+
   //How many views and how many layers within each view
   strawView: 2
   strawLayers: 2
   
-  //height of the station
-  strawStationHeight: 148.5
-  
-  //Width of the station. So the size of the station along
-  //the scallop line. Note the last station includes the
-  //overhang while the others are just the width of one side
-  //of the manifold
-  strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
-  
-  //note that the length of the straw is determined in the 
-  //StrawTrackerGeometry File
+  //note that the *length* of the straw is determined in the
+  //StrawTrackerGeometry File. The height is the active area. 
   innerRadiusOfTheStraw:  0 //mm
   outerRadiusOfTheStraw: 2.55 //mm
   heightOfTheStraw: 9.1 //cm
