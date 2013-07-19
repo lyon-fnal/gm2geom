@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "CLHEP/Units/SystemOfUnits.h"
+#include "gm2dataproducts/strawtracker/WireID.hh"
 
 using CLHEP::mm;
 using CLHEP::deg;
@@ -19,7 +20,7 @@ namespace gm2geom {
     
     void print() const;
     
-    int Plane(int station, int view, int layer);
+    int Plane(gm2strawtracker::WireID wire);
     double wirePosition(int plane, int wire, int view);
     double yPosition(int plane);
     

@@ -5,7 +5,6 @@
 #include <math.h>
 
 
-
 gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName) :
   GeometryBase(detName),
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
@@ -61,9 +60,9 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 }
 
 
-int gm2geom::StrawTrackerGeometry::Plane(int station, int view, int layer) {
+int gm2geom::StrawTrackerGeometry::Plane(gm2strawtracker::WireID wire) {
   
-  return station*(strawView+strawLayers) + view*2 + layer;
+  return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
   
 }
 
