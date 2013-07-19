@@ -9,9 +9,13 @@
 #include "CLHEP/Units/SystemOfUnits.h"
 #include "gm2dataproducts/strawtracker/WireID.hh"
 
+#include "CLHEP/Vector/ThreeVector.h"
+
 using CLHEP::mm;
 using CLHEP::deg;
 using CLHEP::cm;
+
+using gm2strawtracker::WireID;
 
 namespace gm2geom {
   
@@ -20,9 +24,10 @@ namespace gm2geom {
     
     void print() const;
     
-    int Plane(gm2strawtracker::WireID wire);
-    double wirePosition(int plane, int wire, int view);
-    double yPosition(int plane);
+    int Plane(WireID wire);
+    double wirePosition(WireID wire);
+    double yPosition(WireID wire);
+    CLHEP::Hep3Vector TrackerPosition(WireID wire);
     
     std::vector<int> whichScallopLocations;
     std::vector<double> strawStationLocation;

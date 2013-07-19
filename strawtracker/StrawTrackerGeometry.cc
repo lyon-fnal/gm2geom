@@ -5,6 +5,7 @@
 #include <math.h>
 
 
+
 gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName) :
   GeometryBase(detName),
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
@@ -60,24 +61,38 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 }
 
 
-int gm2geom::StrawTrackerGeometry::Plane(gm2strawtracker::WireID wire) {
+int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
   
   return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
   
 }
 
 
-double gm2geom::StrawTrackerGeometry::wirePosition(int plane, int wire, int view){
+double gm2geom::StrawTrackerGeometry::wirePosition(WireID wire){
   
-  double x =  x_position_straw0[plane%4] + wire*dist_btwn_wires;
-  if (view == 0) x = x - delta_x;
+  int plane = Plane(wire);
+  
+  double x =  x_position_straw0[plane%4] + wire.getWire()*dist_btwn_wires;
+  if (wire.getView() == 0) x = x - delta_x;
   else x = x+delta_x;
   
   return x;
 }
 
-double gm2geom::StrawTrackerGeometry::yPosition(int plane){
+double gm2geom::StrawTrackerGeometry::yPosition(WireID wire){
+  
+  int plane = Plane(wire);
+  
   return y_position[plane%4];
+}
+
+
+CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::TrackerPosition(WireID wire){
+  
+  
+  std::cout<<wire.getView()<<std::endl;
+  CLHEP::Hep3Vector me(0,0,0);
+  return me;
 }
 
 void gm2geom::StrawTrackerGeometry::print() const{
