@@ -109,6 +109,9 @@ include(ArtMake)
 
 # Build these directories
 add_subdirectory( strawtracker )
+add_subdirectory( world )
+add_subdirectory( vac )
+add_subdirectory( station )
 add_subdirectory( Core )
 add_subdirectory( ups )
 add_subdirectory( test )
