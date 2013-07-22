@@ -50,24 +50,26 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 {
   
   // A couple of derived quantities
-  strawStationHeightHalf = strawStationHeight/2;
   
+  // Half-sizes of the edges of the stations, necessary for Geant4 placement.
+  strawStationHeightHalf = strawStationHeight/2;
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth[i]/2);
     strawStationLocation[i] = 1436-strawStationLocation[i];
-    
   }
   
+  // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-
     strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] + strawStationPiping);
   }
   
+  // Some straw parameters
   lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
   halfLengthOfTheStraw = lengthOfTheStraw/2;
   halfHeightOfTheStraw = heightOfTheStraw/2;
   
+  // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){
     yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
   }

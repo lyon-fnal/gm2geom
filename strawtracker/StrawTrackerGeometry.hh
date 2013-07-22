@@ -42,6 +42,7 @@ namespace gm2geom {
     // Parameters taken from the FHiCL configuration file; see the configuration
     // file strawtracker.fcl for an explanation.
     // ----------------------------------------------------------------------
+    // Station parameters
     std::vector<int> whichScallopLocations;
     std::vector<double> strawStationLocation;
     std::vector<double> strawStationSize;
@@ -50,48 +51,50 @@ namespace gm2geom {
     std::vector<int> strawStationType;
     int strawView;
     int strawLayers;
-    // Half the straw station sizes
-    std::vector<double> strawStationSizeHalf;
     const double strawStationHeight;
-    // Half the straw station height
-    double strawStationHeightHalf;
-    
     std::vector<double> strawStationWidth;
-    std::vector<double> strawStationWidthHalf;
     
+    // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
-    double heightOfTheStraw;
-    // Derived quantity lenghtOfTheStraw is based on height of the active region
-    // and the layer angle.
-    double lengthOfTheStraw;
-    // More derived quantities - self-explanatory.
-    double halfHeightOfTheStraw;
-    double halfLengthOfTheStraw;
-    // Back to parameters
+    double heightOfTheStraw; // height of active region, *not* the length of the straw
     double startAngleOfTheStraw;
     double spanningAngleOfTheStraw;
 
     double distBtwnWires;
     double layerAngle;
-    // The amount of translation in x necessary to get from the bottom of the
-    // station to the center of the straw.
-    double deltaX;
-    
-    // The total number of stations to be placed (counting multiple scallop
-    // locations)
-    int numberOfStations;
-
-    // More parameters from the configuration file.
-    std::vector<double> strawStationCenterFromEdge;
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
     
+    // Display parameters
     const bool displayStation;
     std::vector<double> stationColor;
     const bool displayStraw;
     std::vector<double> strawColor;
+
+    // Derived parameters - these aren't directly from the config file
+    // ----------------------------------------------------------------------
+    // Half-lengths of the straw stations, required for Geant.
+    std::vector<double> strawStationSizeHalf;
+    double strawStationHeightHalf;
+    std::vector<double> strawStationWidthHalf;
+    // The distance (x, in tracker coordinates) from the flat edge of the
+    // scallop to the straw station center.
+    std::vector<double> strawStationCenterFromEdge;
+    // The total number of stations to be placed (counting multiple scallop
+    // locations)
+    int numberOfStations;
+
+    // Derived quantity lengthOfTheStraw is based on height of the active region
+    // and the layer angle.
+    double lengthOfTheStraw;
+    // More derived quantities - self-explanatory.
+    double halfHeightOfTheStraw;
+    double halfLengthOfTheStraw;
+    // The amount of translation in x necessary to get from the bottom of the
+    // station to the center of the straw.
+    double deltaX;
   };
 
 }
