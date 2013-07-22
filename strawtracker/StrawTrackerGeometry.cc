@@ -1,13 +1,28 @@
+// Implementation of the StrawTrackerGeometry struct. 
+
 #include "StrawTrackerGeometry.hh"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 #include <iostream>
 #include <sstream>
 #include <math.h>
 
+// Rather than #including G4globals.hh, just declare we'll use the units we need
+// from CLHEP/Units/SystemOfUnits.h.
+#include "CLHEP/Units/SystemOfUnits.h"
+using CLHEP::mm;
+using CLHEP::deg;
+using CLHEP::cm;
 
+// Use the view labels defined in WireID
+using gm2strawtracker::u_view;
+using gm2strawtracker::v_view;
+using gm2strawtracker::na_view;
 
+// Constructor takes a name and uses that to create its base GeometryBase class,
+// which gets the parameters for the given name.
 gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName) :
   GeometryBase(detName),
+    // Extract FHiCL parameters.
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
   strawStationLocation( p.get<std::vector<double>>("strawStationLocation")),
   strawStationSize( p.get<std::vector<double>>("strawStationSize")),
@@ -34,6 +49,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
 {
   
+  // A couple of derived quantities
   strawStationHeightHalf = strawStationHeight/2;
   
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
@@ -60,42 +76,65 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
 }
 
-
+// Calculate the total plane number of a wire. Does not use the wire# itself,
+// just the station, view, and layer.
 int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
-  
   return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
-  
 }
 
-
+// Calculate the position of the center of the wire in question in station
+// coordinates, with y upward, x outward, and z downstream, and with the origin
+// at the inner, upstream, lower corner of the station.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
   
   int plane = Plane(wire);
   
+  // Get the x position of the bottom of the wire
   double x =  xPositionStraw0[plane%4] + wire.getWire()*distBtwnWires;
-  if (wire.getView() == 0) x = x - deltaX;
-  else x = x+deltaX;
+
+  // Move it forward or backward according to the angle of the straws, depending
+  // on the view.
+  if (wire.getView() == u_view) {
+       x = x - deltaX;
+  }
+  else {
+      x = x+deltaX;
+  }
   
   return x;
 }
 
+// Calculate the z (not y) coordinate of the center of the wire in question in station
+// coordinates, with y upward, x outward, and z downstream, and with the origin
+// at the inner, upstream, lower corner of the station. Called y position for
+// historical reasons (the coordinates of the station inside geant have x
+// outward, z downward, and y downstream).
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire){
   
   int plane = Plane(wire);
   
+  // It's pretty easy; we just need the 'y' position of the layer.
   return yPosition[plane%4];
 }
 
 
+// Calculate the location of the center of the relevant wire in the tracker
+// coordinates, with z downstream along the straight edge of the scallop, x
+// perpendicular to z inwards in the median plane, and y upwards (defined as
+// zero in the median plane).
 CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire){
-  
+  // Get station position, and add in offsets for x.
   double x = wireXPosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
+  // This is the center of the wire, so by definition it has y=0.
   double y = 0;
+  // Get station position and add in the location of the station for z
   double z = wireYPosition(wire) + strawStationLocation[wire.getStation()];
+  // combine these components and return the resulting vector.
   CLHEP::Hep3Vector trackerPosition(x,y,z);
   return trackerPosition;
 }
 
+// Print some straw geometry information
 void gm2geom::StrawTrackerGeometry::print() const{
   std::ostringstream oss;
   
