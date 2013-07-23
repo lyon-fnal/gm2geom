@@ -1,5 +1,5 @@
 # Build the libraries
-art_make( LIBRARIES )
+art_make( LIBRARIES "gm2geom_Core_Geometry_service")
 
 # Copy the headers
 install_headers()
