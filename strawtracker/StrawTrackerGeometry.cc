@@ -85,8 +85,7 @@ int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
 }
 
 // Calculate the position of the center of the wire in question in station
-// coordinates, with y upward, x outward, and z downstream, and with the origin
-// at the inner, upstream, lower corner of the station.
+// coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
   
   int plane = Plane(wire);
@@ -106,11 +105,8 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
   return x;
 }
 
-// Calculate the z (not y) coordinate of the center of the wire in question in station
-// coordinates, with y upward, x outward, and z downstream, and with the origin
-// at the inner, upstream, lower corner of the station. Called y position for
-// historical reasons (the coordinates of the station inside geant have x
-// outward, z downward, and y downstream).
+// Calculate the y coordinate of the center of the relevant wire in question in
+// station (Geant4) coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire){
   
   int plane = Plane(wire);
@@ -130,6 +126,8 @@ CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire){
   // This is the center of the wire, so by definition it has y=0.
   double y = 0;
   // Get station position and add in the location of the station for z
+  // We add wireYPosition because the tracker z is the station y, up to a
+  // constant offset.
   double z = wireYPosition(wire) + strawStationLocation[wire.getStation()];
   // combine these components and return the resulting vector.
   CLHEP::Hep3Vector trackerPosition(x,y,z);
