@@ -76,6 +76,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
+  numberOfPlanes = numberOfStations *(strawView+strawLayers);
 }
 
 // Calculate the total plane number of a wire. Does not use the wire# itself,
@@ -83,6 +84,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
   return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
 }
+
 
 // Calculate the position of the center of the wire in question in station
 // coordinates, with y downstream, x outward, and z downwards.
