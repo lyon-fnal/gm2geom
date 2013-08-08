@@ -76,7 +76,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
-  numberOfPlanesPerStation = strawStationSize.size()*(strawView+strawLayers);
+  numberOfPlanesPerScallop = strawStationSize.size()*(strawView+strawLayers);
 }
 
 // Calculate the total plane number of a wire. Does not use the wire# itself,

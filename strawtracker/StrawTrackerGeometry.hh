@@ -86,7 +86,7 @@ namespace gm2geom {
     // locations)
     int numberOfStations;
     // The total number of planes per tracker system
-    int numberOfPlanesPerStation;
+    int numberOfPlanesPerScallop;
     // Derived quantity lengthOfTheStraw is based on height of the active region
     // and the layer angle.
     double lengthOfTheStraw;
