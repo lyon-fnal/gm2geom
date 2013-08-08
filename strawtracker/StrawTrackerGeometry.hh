@@ -85,9 +85,8 @@ namespace gm2geom {
     // The total number of stations to be placed (counting multiple scallop
     // locations)
     int numberOfStations;
-    // The total number of planes in the tracker setup (counting multiple
-    // scallop locations)
-    int numberOfPlanes;
+    // The total number of planes per tracker system
+    int numberOfPlanesPerStation;
     // Derived quantity lengthOfTheStraw is based on height of the active region
     // and the layer angle.
     double lengthOfTheStraw;
