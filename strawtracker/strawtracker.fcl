@@ -2,7 +2,7 @@
 //
 // Values are in mm unless otherwise specified
 
-#include "geom/strawStationParameters.fcl"
+#include "geom/strawStationParameters-nopiping.fcl"
 
 BEGIN_PROLOG
 

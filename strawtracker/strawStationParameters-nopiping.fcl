@@ -1,0 +1,11 @@
+BEGIN_PROLOG
+
+strawStationLocation: [756, 671, 586, 501, 416, 331, 246, 161, 61]
+strawStationSize: [128.8, 128.8, 128.8, 128.8, 172.6, 172.6, 172.6, 172.6, 172.6]
+strawStationType: [16,16,16,16,24,24,24,24,24]
+strawStationOffset: [0,15,25,35,0,5,10,15,10]
+strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
+strawStationPiping: 0
+strawStationHeight: 148.5
+
+END_PROLOG
