@@ -81,14 +81,14 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 
 // Calculate the total plane number of a wire. Does not use the wire# itself,
 // just the station, view, and layer.
-int gm2geom::StrawTrackerGeometry::Plane(WireID wire) {
+int gm2geom::StrawTrackerGeometry::Plane(WireID wire) const {
   return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
 }
 
 
 // Calculate the position of the center of the wire in question in station
 // coordinates, with y downstream, x outward, and z downwards.
-double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
+double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   
   int plane = Plane(wire);
   
@@ -109,7 +109,7 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire){
 
 // Calculate the y coordinate of the center of the relevant wire in question in
 // station (Geant4) coordinates, with y downstream, x outward, and z downwards.
-double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire){
+double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   
   int plane = Plane(wire);
   
@@ -122,7 +122,7 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire){
 // coordinates, with z downstream along the straight edge of the scallop, x
 // perpendicular to z inwards in the median plane, and y upwards (defined as
 // zero in the median plane).
-CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire){
+CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire) const{
   // Get station position, and add in offsets for x.
   double x = wireXPosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
   // This is the center of the wire, so by definition it has y=0.

@@ -27,16 +27,16 @@ namespace gm2geom {
     // Calculate the plane number of the straw in question: the first plane is
     // the one furthest upstream in the upstream-most station, and the last is
     // the plane closest to the calorimeter station.
-    int Plane(WireID wire);
+    int Plane(WireID wire) const;
 
     // Get the position (in x and y) of the center of a given wire in the
     // station coordinates.
-    double wireXPosition(WireID wire);
-    double wireYPosition(WireID wire);
+    double wireXPosition(WireID wire) const;
+    double wireYPosition(WireID wire) const;
 
     // Get the 3-vector position of the center of a given wire in the tracker
     // coordinates.
-    CLHEP::Hep3Vector trackerPosition(WireID wire);
+    CLHEP::Hep3Vector trackerPosition(WireID wire) const;
 
 
     // Parameters taken from the FHiCL configuration file; see the configuration
