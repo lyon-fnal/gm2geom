@@ -36,7 +36,10 @@ namespace gm2geom {
 
     // Get the 3-vector position of the center of a given wire in the tracker
     // coordinates.
-    CLHEP::Hep3Vector trackerPosition(WireID wire) const;
+    CLHEP::Hep3Vector trackerPosition(WireID const& wire) const;
+    // Get the 3-vector position of the wire in the tracker coordinates at
+    // a given height (y)
+    CLHEP::Hep3Vector trackerPositionAtHeight(WireID const& wire, double y) const;
 
 
     // Parameters taken from the FHiCL configuration file; see the configuration

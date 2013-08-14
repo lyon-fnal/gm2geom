@@ -122,7 +122,8 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
 // coordinates, with z downstream along the straight edge of the scallop, x
 // perpendicular to z inwards in the median plane, and y upwards (defined as
 // zero in the median plane).
-CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire) const{
+CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::
+trackerPosition(WireID const& wire) const{
   // Get station position, and add in offsets for x.
   double x = wireXPosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
   // This is the center of the wire, so by definition it has y=0.
@@ -134,6 +135,27 @@ CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::trackerPosition(WireID wire) co
   // combine these components and return the resulting vector.
   CLHEP::Hep3Vector trackerPosition(x,y,z);
   return trackerPosition;
+}
+
+// Get the 3-vector position of the wire in the tracker coordinates at
+// a given height (y)
+CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::
+trackerPositionAtHeight(WireID const& wire, double y) const
+{
+    // Start with the center of the straw - y and z are the same.
+    CLHEP::Hep3Vector wireCenter = trackerPosition(wire);
+
+    // And add the offset due to the height to the x coordinate.
+    double offset = y * tan(layerAngle);
+
+    // Check if we should add or subtract (make it zero if we have an
+    // na_view). Add for the u view, subtract for the v view.
+    double multiple = (wire.getView() == u_view ? +1 : 
+            (wire.getView() == v_view ? -1 : 0));
+
+    // Actually do the update and return the result
+    wireCenter.setX(wireCenter.x() + multiple * offset);
+    return wireCenter;
 }
 
 // Print some straw geometry information
