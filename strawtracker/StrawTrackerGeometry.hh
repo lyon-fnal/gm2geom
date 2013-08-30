@@ -60,6 +60,8 @@ namespace gm2geom {
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
+		double outerRadiusOfTheGas;
+		double outerRadiusOfTheWire;
     double heightOfTheStraw; // height of active region, *not* the length of the straw
     double startAngleOfTheStraw;
     double spanningAngleOfTheStraw;

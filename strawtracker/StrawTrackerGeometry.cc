@@ -35,6 +35,8 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
+  outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
+  outerRadiusOfTheWire( p.get<double>("outerRadiusOfTheWire") ),
   heightOfTheStraw( p.get<double>("heightOfTheStraw") * cm),
   startAngleOfTheStraw( p.get<double>("startAngleOfTheStraw") * deg),
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
