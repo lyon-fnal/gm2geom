@@ -75,6 +75,8 @@ namespace gm2geom {
     std::vector<double> stationColor;
     const bool displayStraw;
     std::vector<double> strawColor;
+    std::vector<double> gasColor;
+    std::vector<double> wireColor;
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
