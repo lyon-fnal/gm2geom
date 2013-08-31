@@ -46,6 +46,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   yPosition( p.get<std::vector<double>>("yPosition")),
   displayStation( p.get<bool>("displayStation")),
   stationColor( p.get<std::vector<double>>("stationColor")),
+  manifoldColor( p.get<std::vector<double>>("manifoldColor")),
   displayStraw( p.get<bool>("displayStraw")),
   strawColor( p.get<std::vector<double>>("strawColor")),
   gasColor( p.get<std::vector<double>>("gasColor")),

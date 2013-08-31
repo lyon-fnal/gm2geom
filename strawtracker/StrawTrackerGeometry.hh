@@ -75,6 +75,7 @@ namespace gm2geom {
     // Display parameters
     const bool displayStation;
     std::vector<double> stationColor;
+		std::vector<double> manifoldColor;
     const bool displayStraw;
     std::vector<double> strawColor;
     std::vector<double> gasColor;

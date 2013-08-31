@@ -8,7 +8,7 @@ BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [12]
+  whichScallopLocations: [18]
 
 
   // Straw Station variable descriptions 
@@ -64,7 +64,9 @@ strawtracker_geom : {
   
   displayStation: true
   stationColor: [0.2, 0.6, 1.0, 1.0] //blue
-  
+  manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
+
+
   displayStraw: true
   strawColor: [0.9, 0.8, 0.2, 1.0]
   gasColor: [1.0, 0.0, 0.0, 1.0]
