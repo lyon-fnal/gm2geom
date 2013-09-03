@@ -32,6 +32,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawView( p.get<double>("strawView")),
   strawLayers( p.get<double>("strawLayers")),
   strawStationHeight( p.get<double>("strawStationHeight")),
+  strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
@@ -58,6 +59,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Half-sizes of the edges of the stations, necessary for Geant4 placement.
   strawStationHeightHalf = strawStationHeight/2;
+  strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth[i]/2);

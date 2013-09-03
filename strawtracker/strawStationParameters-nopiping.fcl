@@ -7,5 +7,6 @@ strawStationOffset: [0,15,25,35,0,5,10,15,10]
 strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
 strawStationPiping: 0
 strawStationHeight: 148.5
+strawStationManifoldHeight: 28.75
 
 END_PROLOG

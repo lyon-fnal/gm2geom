@@ -2,7 +2,8 @@
 //
 // Values are in mm unless otherwise specified
 
-#include "geom/strawStationParameters-nopiping.fcl"
+//#include "geom/strawStationParameters-nopiping.fcl"
+#include "geom/strawStationParameters.fcl"
 
 BEGIN_PROLOG
 
@@ -35,6 +36,7 @@ strawtracker_geom : {
   strawStationWidth:@local::strawStationWidth
   strawStationPiping:@local::strawStationPiping
   strawStationHeight:@local::strawStationHeight
+  strawStationManifoldHeight:@local::strawStationManifoldHeight
 
   //How many views and how many layers within each view
   strawView: 2
@@ -44,8 +46,8 @@ strawtracker_geom : {
   //StrawTrackerGeometry File. The height is the active area. 
   innerRadiusOfTheStraw:  0 //mm
   outerRadiusOfTheStraw: 2.55 //mm
-	outerRadiusOfTheGas: 2.535 //mm
-	outerRadiusOfTheWire: 0.0125 //mm
+  outerRadiusOfTheGas: 2.535 //mm
+  outerRadiusOfTheWire: 0.0125 //mm
   heightOfTheStraw: 9.1 //cm
   startAngleOfTheStraw: 0 //deg
   spanningAngleOfTheStraw:  360. //deg

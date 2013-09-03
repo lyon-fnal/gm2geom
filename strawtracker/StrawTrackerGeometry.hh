@@ -55,6 +55,7 @@ namespace gm2geom {
     int strawView;
     int strawLayers;
     const double strawStationHeight;
+    const double strawStationManifoldHeight;
     std::vector<double> strawStationWidth;
     
     // Straw parameters
@@ -86,6 +87,7 @@ namespace gm2geom {
     // Half-lengths of the straw stations, required for Geant.
     std::vector<double> strawStationSizeHalf;
     double strawStationHeightHalf;
+    double strawStationManifoldHeightHalf;
     std::vector<double> strawStationWidthHalf;
     // The distance (x, in tracker coordinates) from the flat edge of the
     // scallop to the straw station center.
