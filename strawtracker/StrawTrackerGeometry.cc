@@ -38,7 +38,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
   outerRadiusOfTheWire( p.get<double>("outerRadiusOfTheWire") ),
-  heightOfTheStraw( p.get<double>("heightOfTheStraw") * cm),
   startAngleOfTheStraw( p.get<double>("startAngleOfTheStraw") * deg),
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
   distBtwnWires( p.get<double>("distBtwnWires") *mm ),
@@ -72,6 +71,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   }
   
   // Some straw parameters
+  heightOfTheStraw = strawStationHeight - 2*strawStationManifoldHeight;
   lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
   halfLengthOfTheStraw = lengthOfTheStraw/2;
   halfHeightOfTheStraw = heightOfTheStraw/2;
@@ -174,6 +174,7 @@ void gm2geom::StrawTrackerGeometry::print() const{
   oss << "  strawStationLocations="; for (auto entry : strawStationLocation) { oss << " " << entry; }; oss << "\n";
   oss << "  whichScallopLocations="; for (auto entry : whichScallopLocations) { oss << " " << entry; }; oss << "\n";
   oss << "  lengthOfStraw=" <<lengthOfTheStraw << "\n";
+  oss << "  heightOfStraw=" <<heightOfTheStraw << "\n";
   mf::LogInfo("STRAWTRACKERGEOMETRY") << oss.str();
   
  

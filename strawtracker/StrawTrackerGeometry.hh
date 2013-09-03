@@ -63,7 +63,6 @@ namespace gm2geom {
     double outerRadiusOfTheStraw;
 		double outerRadiusOfTheGas;
 		double outerRadiusOfTheWire;
-    double heightOfTheStraw; // height of active region, *not* the length of the straw
     double startAngleOfTheStraw;
     double spanningAngleOfTheStraw;
 
@@ -84,6 +83,9 @@ namespace gm2geom {
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
+    // height of active region, *not* the length of the straw, determined 
+    // from the height of the station - 2 times the height of the manifold
+    double heightOfTheStraw; 
     // Half-lengths of the straw stations, required for Geant.
     std::vector<double> strawStationSizeHalf;
     double strawStationHeightHalf;

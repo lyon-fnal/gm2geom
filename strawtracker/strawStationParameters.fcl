@@ -6,7 +6,7 @@ strawStationType: [8,8,8,8,8,16,16,16,16]
 strawStationOffset: [0,5,13,20,23,0,0,0,0]
 strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
 strawStationPiping: 57.3
-strawStationHeight: 148.5
+strawStationHeight: 138
 strawStationManifoldHeight: 28.75
 
 END_PROLOG

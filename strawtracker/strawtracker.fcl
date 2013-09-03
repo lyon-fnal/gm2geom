@@ -48,7 +48,6 @@ strawtracker_geom : {
   outerRadiusOfTheStraw: 2.55 //mm
   outerRadiusOfTheGas: 2.535 //mm
   outerRadiusOfTheWire: 0.0125 //mm
-  heightOfTheStraw: 9.1 //cm
   startAngleOfTheStraw: 0 //deg
   spanningAngleOfTheStraw:  360. //deg
 
