@@ -42,8 +42,8 @@ strawtracker_geom : {
   strawView: 2
   strawLayers: 2
   
-  //note that the *length* of the straw is determined in the
-  //StrawTrackerGeometry File. The height is the active area. 
+  //note that the *length* and the height (active area) of the straw 
+  //are  determined in the StrawTrackerGeometry File. 
   innerRadiusOfTheStraw:  0 //mm
   outerRadiusOfTheStraw: 2.55 //mm
   outerRadiusOfTheGas: 2.535 //mm
@@ -51,7 +51,6 @@ strawtracker_geom : {
   startAngleOfTheStraw: 0 //deg
   spanningAngleOfTheStraw:  360. //deg
 
-  
   distBtwnWires: 5.55 //mm
   layerAngle: 7.5 //deg
   
