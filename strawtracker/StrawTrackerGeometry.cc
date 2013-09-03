@@ -42,6 +42,10 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
   distBtwnWires( p.get<double>("distBtwnWires") *mm ),
   layerAngle( p.get<double>("layerAngle") *deg),
+  supportPostRadius( p.get<double>("supportPostRadius") ),
+  supportPostYPosition( p.get<double>("supportPostYPosition") ),
+  supportPlateThickness( p.get<double>("supportPlateThickness") ),
+  supportPlateWidth( p.get<double>("supportPlateWidth") ),
   xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
   yPosition( p.get<std::vector<double>>("yPosition")),
   displayStation( p.get<bool>("displayStation")),
@@ -80,7 +84,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   for (unsigned int i = 0; i<yPosition.size(); i++){
     yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
   }
-  
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
   numberOfPlanesPerScallop = strawStationSize.size()*(strawView+strawLayers);

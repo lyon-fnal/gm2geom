@@ -54,6 +54,10 @@ strawtracker_geom : {
   distBtwnWires: 5.55 //mm
   layerAngle: 7.5 //deg
   
+  supportPostRadius: 3.5 //mm
+  supportPostYPosition: 52.52 //mm  
+  supportPlateThickness: 6.0
+  supportPlateWidth: 52.25
   //These are the positions of the straw in each layer
   //that is closest to the scallop edge as measured from
   //the corner which is closest to the scallop edge
@@ -67,7 +71,7 @@ strawtracker_geom : {
   manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
 
 
-  displayStraw: true
+  displayStraw: false
   strawColor: [0.9, 0.8, 0.2, 1.0]
   gasColor: [1.0, 0.0, 0.0, 1.0]
   wireColor: [0.0, 0.0, 1.0, 1.0]

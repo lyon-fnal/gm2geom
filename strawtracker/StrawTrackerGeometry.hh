@@ -68,6 +68,11 @@ namespace gm2geom {
 
     double distBtwnWires;
     double layerAngle;
+    
+    double supportPostRadius;
+    double supportPostYPosition;
+    double supportPlateThickness;
+    double supportPlateWidth;
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
