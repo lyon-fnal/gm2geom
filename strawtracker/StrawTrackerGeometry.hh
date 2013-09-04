@@ -76,11 +76,12 @@ namespace gm2geom {
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
-    
+    std::vector<double> yPositionLastStation;    
     // Display parameters
     const bool displayStation;
     std::vector<double> stationColor;
 		std::vector<double> manifoldColor;
+    const bool displayStationMaterial;
     const bool displayStraw;
     std::vector<double> strawColor;
     std::vector<double> gasColor;

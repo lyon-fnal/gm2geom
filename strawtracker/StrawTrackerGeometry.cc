@@ -51,6 +51,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   displayStation( p.get<bool>("displayStation")),
   stationColor( p.get<std::vector<double>>("stationColor")),
   manifoldColor( p.get<std::vector<double>>("manifoldColor")),
+  displayStationMaterial( p.get<bool>("displayStationMaterial")),
   displayStraw( p.get<bool>("displayStraw")),
   strawColor( p.get<std::vector<double>>("strawColor")),
   gasColor( p.get<std::vector<double>>("gasColor")),
@@ -82,8 +83,10 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){
+    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
     yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
   }
+  
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
   numberOfPlanesPerScallop = strawStationSize.size()*(strawView+strawLayers);
@@ -124,7 +127,10 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   int plane = Plane(wire);
   
   // It's pretty easy; we just need the 'y' position of the layer.
-  return yPosition[plane%4];
+  int lastStationPosition = strawStationWidth.size()-1;
+  if (wire.getStation() == lastStationPosition) return yPositionLastStation[plane%4];
+  else return yPosition[plane%4];
+  
 }
 
 

@@ -66,12 +66,12 @@ strawtracker_geom : {
   xPositionStraw0: [27.19, 29.96, 17.98, 15.21]
   yPosition: [39.36, 44.12, 60.91, 65.68]
   
-  displayStation: true
+  displayStation: false
   stationColor: [0.2, 0.6, 1.0, 1.0] //blue
   manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
+  displayStationMaterial: true
 
-
-  displayStraw: false
+  displayStraw: true
   strawColor: [0.9, 0.8, 0.2, 1.0]
   gasColor: [1.0, 0.0, 0.0, 1.0]
   wireColor: [0.0, 0.0, 1.0, 1.0]
