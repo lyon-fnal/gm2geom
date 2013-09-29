@@ -81,20 +81,20 @@ gm2geom::InflectorGeom::InflectorGeom(std::string const & detName) :
   inflector_Z((inflectorTotalWidth / 2) + 1*mm),
 
   inflectorMandrel_X(inflectorTotalHeight / 2),
-  inflectorMandrel_Y(ig.mandrel_length() / 2),
+  inflectorMandrel_Y(mandrel_length() / 2),
   inflectorMandrel_Z(inflectorTotalWidth / 2),
   
   beamChannel1_X(apertureInnerHeight / 2),
-  beamChannel1_Y(ig.mandrel_length() / 2),
+  beamChannel1_Y(mandrel_length() / 2),
   beamChannel1_Z((apertureWidth/2) / 2),
   beamChannel2_X1(apertureOuterHeight / 2),
   beamChannel2_X2(apertureInnerHeight / 2),
-  beamChannel2_Y1(ig.mandrel_length() / 2),
-  beamChannel2_Y2(ig.mandrel_length() / 2),
+  beamChannel2_Y1(mandrel_length() / 2),
+  beamChannel2_Y2(mandrel_length() / 2),
   beamChannel2_Z((apertureWidth/2) / 2),
   
    window_X(inflectorTotalHeight / 2),
-   window_Y(ig.window_thickness() / 2),
+   window_Y(window_thickness() / 2),
    window_Z(inflectorTotalWidth / 2),
 
    flange_X(inflectorTotalHeight / 2),
@@ -111,22 +111,22 @@ gm2geom::InflectorGeom::InflectorGeom(std::string const & detName) :
   beamChannel2_offset((apertureWidth / 2)),
  beamChannel_offset(centerBeamApertureToInflectorCenter + beamChannel1_Z),
 
-   windowPlacement((ig.mandrel_length() / 2) + (ig.window_thickness() / 2)),
+   windowPlacement((mandrel_length() / 2) + (window_thickness() / 2)),
 
-   eqAlPlacement((ig.mandrel_length() / 2) + ig.window_thickness()
+   eqAlPlacement((mandrel_length() / 2) + window_thickness()
     + (equivalentAlWidth / 2)),
 
-   eqCuPlacement((ig.mandrel_length() / 2) + ig.window_thickness()
-		 + equivalentAlWidth + (equivalentCuWidth /2 )),
-  
-  eqNbTiPlacement((ig.mandrel_length() / 2) + ig.window_thickness()
+   eqCuPlacement((mandrel_length() / 2) + window_thickness()
+    + equivalentAlWidth + (equivalentCuWidth /2 )),
+
+   eqNbTiPlacement((mandrel_length() / 2) + window_thickness()
     + equivalentAlWidth + equivalentCuWidth + (equivalentNbTiWidth / 2)),
 
-   flangePlacement((ig.mandrel_length() / 2) + ig.window_thickness()
-    + ig.conductor_thickness() + (ig.window_thickness() / 2)),
+   flangePlacement((mandrel_length() / 2) + window_thickness()
+    + conductor_thickness() + (window_thickness() / 2)),
 
-   launchPlacement((ig.mandrel_length() / 2) + (2*ig.window_thickness())
-    + ig.conductor_thickness() + (launchWidth / 2)),
+   launchPlacement((mandrel_length() / 2) + (2*window_thickness())
+    + conductor_thickness() + (launchWidth / 2)),
 
   cryo_angular( p.get<double>("cryo_angular") * deg),
   cryo_rotation( p.get<double>("cryo_rotation") * deg),
