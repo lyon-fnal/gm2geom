@@ -2,13 +2,14 @@
 //
 // Values are in mm unless otherwise specified
 
-#include "geom/strawStationParameters-nopiping.fcl"
+//#include "geom/strawStationParameters-nopiping.fcl"
+#include "geom/strawStationParameters.fcl"
 
 BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [12]
+  whichScallopLocations: [18]
 
 
   // Straw Station variable descriptions 
@@ -35,23 +36,28 @@ strawtracker_geom : {
   strawStationWidth:@local::strawStationWidth
   strawStationPiping:@local::strawStationPiping
   strawStationHeight:@local::strawStationHeight
+  strawStationManifoldHeight:@local::strawStationManifoldHeight
 
   //How many views and how many layers within each view
   strawView: 2
   strawLayers: 2
   
-  //note that the *length* of the straw is determined in the
-  //StrawTrackerGeometry File. The height is the active area. 
+  //note that the *length* and the height (active area) of the straw 
+  //are  determined in the StrawTrackerGeometry File. 
   innerRadiusOfTheStraw:  0 //mm
   outerRadiusOfTheStraw: 2.55 //mm
-  heightOfTheStraw: 9.1 //cm
+  outerRadiusOfTheGas: 2.535 //mm
+  outerRadiusOfTheWire: 0.0125 //mm
   startAngleOfTheStraw: 0 //deg
   spanningAngleOfTheStraw:  360. //deg
 
-  
   distBtwnWires: 5.55 //mm
   layerAngle: 7.5 //deg
   
+  supportPostRadius: 3.5 //mm
+  supportPostYPosition: 52.52 //mm  
+  supportPlateThickness: 6.0
+  supportPlateWidth: 52.25
   //These are the positions of the straw in each layer
   //that is closest to the scallop edge as measured from
   //the corner which is closest to the scallop edge
@@ -60,11 +66,14 @@ strawtracker_geom : {
   xPositionStraw0: [27.19, 29.96, 17.98, 15.21]
   yPosition: [39.36, 44.12, 60.91, 65.68]
   
-  displayStation: true
+  displayStation: false
   stationColor: [0.2, 0.6, 1.0, 1.0] //blue
-  
+  manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
+  displayStationMaterial: true
+
   displayStraw: true
   strawColor: [0.9, 0.8, 0.2, 1.0]
-
+  gasColor: [1.0, 0.0, 0.0, 1.0]
+  wireColor: [0.0, 0.0, 1.0, 1.0]
 }
 END_PROLOG 

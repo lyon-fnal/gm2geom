@@ -32,20 +32,30 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawView( p.get<double>("strawView")),
   strawLayers( p.get<double>("strawLayers")),
   strawStationHeight( p.get<double>("strawStationHeight")),
+  strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
-  heightOfTheStraw( p.get<double>("heightOfTheStraw") * cm),
+  outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
+  outerRadiusOfTheWire( p.get<double>("outerRadiusOfTheWire") ),
   startAngleOfTheStraw( p.get<double>("startAngleOfTheStraw") * deg),
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
   distBtwnWires( p.get<double>("distBtwnWires") *mm ),
   layerAngle( p.get<double>("layerAngle") *deg),
+  supportPostRadius( p.get<double>("supportPostRadius") ),
+  supportPostYPosition( p.get<double>("supportPostYPosition") ),
+  supportPlateThickness( p.get<double>("supportPlateThickness") ),
+  supportPlateWidth( p.get<double>("supportPlateWidth") ),
   xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
   yPosition( p.get<std::vector<double>>("yPosition")),
   displayStation( p.get<bool>("displayStation")),
   stationColor( p.get<std::vector<double>>("stationColor")),
+  manifoldColor( p.get<std::vector<double>>("manifoldColor")),
+  displayStationMaterial( p.get<bool>("displayStationMaterial")),
   displayStraw( p.get<bool>("displayStraw")),
-  strawColor( p.get<std::vector<double>>("strawColor"))
+  strawColor( p.get<std::vector<double>>("strawColor")),
+  gasColor( p.get<std::vector<double>>("gasColor")),
+  wireColor( p.get<std::vector<double>>("wireColor"))
   
 {
   
@@ -53,6 +63,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Half-sizes of the edges of the stations, necessary for Geant4 placement.
   strawStationHeightHalf = strawStationHeight/2;
+  strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth[i]/2);
@@ -65,12 +76,14 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   }
   
   // Some straw parameters
+  heightOfTheStraw = strawStationHeight - 2*strawStationManifoldHeight;
   lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
   halfLengthOfTheStraw = lengthOfTheStraw/2;
   halfHeightOfTheStraw = heightOfTheStraw/2;
   
   // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){
+    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
     yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
   }
   
@@ -114,7 +127,10 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   int plane = Plane(wire);
   
   // It's pretty easy; we just need the 'y' position of the layer.
-  return yPosition[plane%4];
+  int lastStationPosition = strawStationWidth.size()-1;
+  if (wire.getStation() == lastStationPosition) return yPositionLastStation[plane%4];
+  else return yPosition[plane%4];
+  
 }
 
 
@@ -167,6 +183,7 @@ void gm2geom::StrawTrackerGeometry::print() const{
   oss << "  strawStationLocations="; for (auto entry : strawStationLocation) { oss << " " << entry; }; oss << "\n";
   oss << "  whichScallopLocations="; for (auto entry : whichScallopLocations) { oss << " " << entry; }; oss << "\n";
   oss << "  lengthOfStraw=" <<lengthOfTheStraw << "\n";
+  oss << "  heightOfStraw=" <<heightOfTheStraw << "\n";
   mf::LogInfo("STRAWTRACKERGEOMETRY") << oss.str();
   
  

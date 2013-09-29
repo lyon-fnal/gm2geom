@@ -55,32 +55,47 @@ namespace gm2geom {
     int strawView;
     int strawLayers;
     const double strawStationHeight;
+    const double strawStationManifoldHeight;
     std::vector<double> strawStationWidth;
     
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
-    double heightOfTheStraw; // height of active region, *not* the length of the straw
+		double outerRadiusOfTheGas;
+		double outerRadiusOfTheWire;
     double startAngleOfTheStraw;
     double spanningAngleOfTheStraw;
 
     double distBtwnWires;
     double layerAngle;
+    
+    double supportPostRadius;
+    double supportPostYPosition;
+    double supportPlateThickness;
+    double supportPlateWidth;
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
-    
+    std::vector<double> yPositionLastStation;    
     // Display parameters
     const bool displayStation;
     std::vector<double> stationColor;
+		std::vector<double> manifoldColor;
+    const bool displayStationMaterial;
     const bool displayStraw;
     std::vector<double> strawColor;
+    std::vector<double> gasColor;
+    std::vector<double> wireColor;
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
+    // height of active region, *not* the length of the straw, determined 
+    // from the height of the station - 2 times the height of the manifold
+    double heightOfTheStraw; 
     // Half-lengths of the straw stations, required for Geant.
     std::vector<double> strawStationSizeHalf;
     double strawStationHeightHalf;
+    double strawStationManifoldHeightHalf;
     std::vector<double> strawStationWidthHalf;
     // The distance (x, in tracker coordinates) from the flat edge of the
     // scallop to the straw station center.
