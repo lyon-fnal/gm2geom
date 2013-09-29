@@ -68,13 +68,6 @@ namespace gm2geom {
         const std::vector<double> diffuserColor;
         const std::vector<double> wrappingColor;
         
-        // whether or not to track particles through the calorimeter
-        // killShowers = true kills all tracks that enter calo
-        //      (caloHits are recorded)
-        // killShowers = false allows particles to enter the calorimeter
-        //       and interact with the PbF2 crystals
-        const bool killShowers;
-        
         // placement inside mother volume
         const bool placeInStation;
         // ----> if true, reads in station geometry and does position adjustment

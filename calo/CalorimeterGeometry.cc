@@ -48,7 +48,6 @@ gm2geom::CalorimeterGeometry::CalorimeterGeometry(std::string const & detName) :
   opticalCouplingColor(  p.get<std::vector<double>>("opticalCouplingColor") ),
   diffuserColor(         p.get<std::vector<double>>("diffuserColor")        ),
   wrappingColor(         p.get<std::vector<double>>("wrappingColor")        ),
-  killShowers(           p.get<bool>("killShowers")                         ),
   placeInStation(        p.get<bool>("placeInStation")                      ),
   positionOffsetX(       p.get<double>("positionOffsetX") * cm              ),
   positionOffsetY(       p.get<double>("positionOffsetY") * cm              ),
@@ -111,8 +110,6 @@ void gm2geom::CalorimeterGeometry::print() {
     oss << "  opticalCouplingColor: "; for (auto entry : opticalCouplingColor) { oss << " " << entry; }; oss << "\n";
     oss << "  diffuserColor:        "; for (auto entry : diffuserColor) { oss << " " << entry; }; oss << "\n";
     oss << "  wrappingColor:        "; for (auto entry : wrappingColor) { oss << " " << entry; }; oss << "\n";
-    
-    oss << "  killShowers = " << killShowers << "\n";
     
     oss << "  placeInStation =   " << placeInStation << "\n";
     oss << "  positionOffsetX =  " << positionOffsetX << "\n";
