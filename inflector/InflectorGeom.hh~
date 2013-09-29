@@ -22,21 +22,21 @@ namespace gm2geom {
 
 
     
-//     inline double delta() const { return rotAngle; }
-//     inline double gamma() const { return swingAngle; }
-//     inline double zeta() const { return tiltAngle; }
-//     inline double swing_angle() const { return gamma(); }
-//     inline double tilt_angle() const { return zeta(); }
-//     inline double aperture_off() const { return apertureDist; }
+    inline double delta() const { return rotAngle; }
+    inline double gamma() const { return swingAngle; }
+    inline double zeta() const { return tiltAngle; }
+    inline double swing_angle() const { return gamma(); }
+    inline double tilt_angle() const { return zeta(); }
+    inline double aperture_off() const { return apertureDist; }
 
-//     inline double mandrel_half_length() const { return mL; }
-//     inline double mandrel_length() const { return 2.*mL; }
-//     inline double half_length() const { return iL; }
-//     inline double length() const { return 2.*iL; }
+    inline double mandrel_half_length() const { return mL; }
+    inline double mandrel_length() const { return 2.*mL; }
+    inline double half_length() const { return iL; }
+    inline double length() const { return 2.*iL; }
     
-//     inline double window_thickness() const { return windowWidth; }
-//     inline double conductor_thickness() const { return conductorWidth; }
-//     inline double cryostat_thickness() const { return cryostatWindowThickness; }
+    inline double window_thickness() const { return windowWidth; }
+    inline double conductor_thickness() const { return conductorWidth; }
+    inline double cryostat_thickness() const { return cryostatWindowThickness; }
     
         
     inflectorGeometry ig;

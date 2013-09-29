@@ -9,6 +9,12 @@ inflector_geom : {
   inflectorTotalWidth : 97.3  //mm
   inflectorTotalHeight : 141.6 //mm
 
+  inflectorMandrelLength : 1696. //mm;
+  
+  WindowWidth : 1.5 //mm
+  ConductorWidth : 2.4 //*mm;
+  CryostatWindowThickness : 1.0 //*mm;
+
   apertureWidth : 18. //mm
   apertureInnerHeight : 56. //mm
   apertureOuterHeight : 32. //mm
@@ -76,6 +82,13 @@ inflector_geom : {
   useDownstreamConductor : true
   useUpstreamEndFlange : true
   useDownstreamEndFlange : true
+
+  swingAngle: 2.4 // mrad
+  tiltAngle:  0.0 // mrad
+  rotAngle :  5.587 //degree
+
+  fieldType : MAPPED
+  apertureDist : 77 //mm
 
   conductorCurrent : 2724. // ampere
   fieldNormConst : 14246.5 // gauss
