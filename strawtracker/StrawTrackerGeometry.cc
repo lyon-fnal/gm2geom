@@ -34,6 +34,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawStationHeight( p.get<double>("strawStationHeight")),
   strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
+  strawManifoldThickness( p.get<double>("strawManifoldThickness")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
@@ -98,7 +99,11 @@ int gm2geom::StrawTrackerGeometry::Plane(WireID wire) const {
   return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
 }
 
-
+int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
+  int pos = std::find(whichScallopLocations.begin(), whichScallopLocations.end(), wire.getTrackerNumber()) - whichScallopLocations.begin();
+ return wire.getStation() + pos*strawStationLocation.size();
+  
+}
 // Calculate the position of the center of the wire in question in station
 // coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {

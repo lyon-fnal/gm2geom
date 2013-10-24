@@ -29,6 +29,9 @@ namespace gm2geom {
     // the plane closest to the calorimeter station.
     int Plane(WireID wire) const;
 
+    //Calculate the Total station number given a WireID. This is needed
+    //for placing the straws within the stations
+    int TotalStationNumber(WireID wire) const;
     // Get the position (in x and y) of the center of a given wire in the
     // station coordinates.
     double wireXPosition(WireID wire) const;
@@ -57,7 +60,7 @@ namespace gm2geom {
     const double strawStationHeight;
     const double strawStationManifoldHeight;
     std::vector<double> strawStationWidth;
-    
+    const double strawManifoldThickness;    
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
