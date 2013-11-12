@@ -9,10 +9,11 @@
 namespace gm2geom {
     class CaloGeometryService {
     public:
-        CaloGeometryService(fhicl::ParameterSet const&, art::ActivityRegistry&) :
-            geom_(new gm2geom::CalorimeterGeometry("calorimeter")) {}
+        CaloGeometryService(fhicl::ParameterSet const&, art::ActivityRegistry& iReg);
+
         const std::shared_ptr<CalorimeterGeometry> geom() {return geom_;}
         void update();
+        void preBeginRun(art::Run const&);
     private:
         std::shared_ptr<CalorimeterGeometry> geom_;
     };
