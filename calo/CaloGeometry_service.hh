@@ -1,3 +1,6 @@
+#ifndef CALO_GEOMETRY_SERVICE
+#define CALO_GEOMETRY_SERVICE
+
 #include "fhiclcpp/ParameterSet.h"
 #include "art/Framework/Services/Registry/ActivityRegistry.h"
 
@@ -14,3 +17,5 @@ namespace gm2geom {
         std::shared_ptr<CalorimeterGeometry> geom_;
     };
 }
+
+#endif
