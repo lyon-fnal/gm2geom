@@ -9,8 +9,9 @@ BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [18]
+  whichScallopLocations: []
   //whichScallopLocations: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+
 
   // Straw Station variable descriptions 
   // Defined in strawStationParameter file that 
@@ -37,7 +38,8 @@ strawtracker_geom : {
   strawStationPiping:@local::strawStationPiping
   strawStationHeight:@local::strawStationHeight
   strawStationManifoldHeight:@local::strawStationManifoldHeight
-  
+  strawStationManifoldThickness:@local::strawStationManifoldThickness
+	  
   strawManifoldThickness: 1.5 //mm
   //How many views and how many layers within each view
   strawView: 2

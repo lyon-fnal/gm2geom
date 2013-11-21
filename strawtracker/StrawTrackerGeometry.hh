@@ -59,6 +59,7 @@ namespace gm2geom {
     int strawLayers;
     const double strawStationHeight;
     const double strawStationManifoldHeight;
+		const double strawStationManifoldThickness;
     std::vector<double> strawStationWidth;
     const double strawManifoldThickness;    
     // Straw parameters

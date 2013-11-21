@@ -8,5 +8,5 @@ strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
 strawStationPiping: 0
 strawStationHeight: 138
 strawStationManifoldHeight: 28.75
-
+strawStationManifoldThickness: 3.0
 END_PROLOG
