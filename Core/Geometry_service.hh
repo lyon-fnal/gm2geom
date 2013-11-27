@@ -7,7 +7,7 @@
 // Art                                                                        
 #include "fhiclcpp/ParameterSet.h"
 #include "art/Framework/Services/Registry/ActivityRegistry.h"
-
+#include "art/Framework/Services/Registry/ServiceMacros.h"
 namespace gm2geom {
 
   class GeometryService { 
@@ -23,5 +23,9 @@ namespace gm2geom {
   };
 
 } //namespace
+
+using gm2geom::GeometryService;
+DECLARE_ART_SERVICE(GeometryService, LEGACY)
+
 
 #endif //GM2GEOM_GEOMETRY_SERVICE_HH

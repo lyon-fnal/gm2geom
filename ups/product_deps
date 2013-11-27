@@ -18,15 +18,14 @@ defaultqual e2
 # Add the dependent product and version
 
 product          version
-art              v1_02_04
+art              v1_08_09
 
-only_for_build  cetbuildtools v2_03_03
-only_for_build  gm2softwaretools v201209_02
+only_for_build  cetbuildtools v3_07_00
 
 # We now define allowed qualifiers and the corresponding qualifiers for the depdencies.
 # Make a table by adding columns before "notes". 
 #
 qualifier        art        notes
-e2:debug         e2:debug   
-e2:opt           e2:opt     
-e2:prof          e2:prof    
+e4:debug         e4:mu2e:debug   
+e4:opt           e4:mu2e:opt     
+e4:prof          e4:mu2e:prof    

@@ -1,5 +1,5 @@
 # Build the libraries
-art_make( LIBRARIES )
+art_make( LIB_LIBRARIES )
 
 # Copy the headers
 install_headers()
