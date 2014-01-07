@@ -35,7 +35,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationManifoldThickness( p.get<double>("strawStationManifoldThickness")),
   strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
-  strawManifoldThickness( p.get<double>("strawManifoldThickness")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
