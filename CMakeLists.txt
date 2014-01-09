@@ -50,7 +50,6 @@ cet_report_compiler_flags()
 # These are needed for Art stuff
 find_ups_product(cetbuildtools v3_06_02)
 find_ups_product(cpp0x v1_03_23)
-find_ups_product(libsigcpp v2_2_11)
 find_ups_product(cppunit v1_12_1)
 find_ups_product(clhep v2_1_3_1)
 find_ups_product(cetlib v1_03_23)
