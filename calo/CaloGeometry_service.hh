@@ -19,4 +19,6 @@ namespace gm2geom {
     };
 }
 
+using gm2geom::CaloGeometryService;
+DECLARE_ART_SERVICE(CaloGeometryService,LEGACY)
 #endif

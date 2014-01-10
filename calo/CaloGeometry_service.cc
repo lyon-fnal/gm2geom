@@ -7,8 +7,9 @@
 gm2geom::CaloGeometryService::CaloGeometryService(fhicl::ParameterSet const&, art::ActivityRegistry& iReg) :
   geom_(new gm2geom::CalorimeterGeometry("calorimeter"))
 {
-	art::ServiceHandle <gm2geom::GeometryService> g; // ensure that GeometryService gets constructed first
-    iReg.watchPreBeginRun(this, &CaloGeometryService::preBeginRun);
+
+  art::ServiceHandle <gm2geom::GeometryService> g; // ensure that GeometryService gets constructed first
+  iReg.sPreBeginRun.watch(this,&CaloGeometryService::preBeginRun);
 }
 
 void gm2geom::CaloGeometryService::update() {

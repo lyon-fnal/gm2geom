@@ -117,6 +117,6 @@ void gm2geom::CalorimeterGeometry::print() {
     oss << "  positionOffsetZ =  " << positionOffsetZ << "\n";
 
 	
-    mf::LogInfo("CALORIMETERGEOMETRY") << oss.str();
+    //    mf::LogInfo("CALORIMETERGEOMETRY") << oss.str();
     
 }
