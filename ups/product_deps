@@ -22,7 +22,7 @@ defaultqual e4
 product          version
 art              v1_08_10
 
-only_for_build  cetbuildtools v3_07_00
+only_for_build  cetbuildtools v3_07_03
 
 # We now define allowed qualifiers and the corresponding qualifiers for the depdencies.
 # Make a table by adding columns before "notes". 
