@@ -16,8 +16,11 @@ namespace gm2geom {
     void print() const;
 
     bool DoScraping;
+    std::string Stepper;
+    const double StepSize; 
     const double ScrapeHV;
     const double StoreHV;
+    std::string FieldType;
     std::string PlateMaterial;
     const double topBottomWidth;
     const double topBottomThickness;

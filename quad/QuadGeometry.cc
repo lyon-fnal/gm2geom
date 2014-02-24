@@ -21,8 +21,11 @@ using gm2ringsim::R_magic;
 gm2geom::QuadGeometry::QuadGeometry(std::string const & detName) :
   GeometryBase(detName),
   DoScraping( p.get<bool>("DoScraping")),
+  Stepper( p.get<std::string>("Stepper", "ClassicalRK4")),
+  StepSize( p.get<double>("StepSize", 0.01) * mm),
   ScrapeHV( p.get<double>("ScrapeHV")*kilovolt),
   StoreHV( p.get<double>("StoreHV")*kilovolt),
+  FieldType( p.get<std::string>("FieldType", "Mapped")),
   PlateMaterial(p.get<std::string>("PlateMaterial", "Al")),
   topBottomWidth( p.get<double>("topBottomWidth") * cm),
   topBottomThickness( p.get<double>("topBottomThickness") * cm),
@@ -119,8 +122,11 @@ gm2geom::QuadGeometry::QuadGeometry(std::string const & detName) :
 void gm2geom::QuadGeometry::print() const { 
   std::ostringstream oss;
   oss << "  DoScraping=" << DoScraping << "\n";
+  oss << "  Stepper=" << Stepper << "\n";
+  oss << "  StepSize=" << StepSize << "\n";
   oss << "  ScrapeHV=" << ScrapeHV << "\n";
   oss << "  StoreHV=" << StoreHV << "\n";
+  oss << "  FieldType=" << FieldType << "\n";
   oss << "  topBottomWidth=" << topBottomWidth << "\n";
   oss << "  topBottomThickness=" << topBottomThickness << "\n";
   oss << "  innerOuterWidth=" << innerOuterWidth << "\n";
