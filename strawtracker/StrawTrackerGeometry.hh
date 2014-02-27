@@ -86,6 +86,8 @@ namespace gm2geom {
     std::vector<double> stationColor;
 		std::vector<double> manifoldColor;
     const bool displayStationMaterial;
+    const bool displayPipingMaterial;
+		std::vector<double> pipingColor;
     const bool displayStraw;
     std::vector<double> strawColor;
     std::vector<double> gasColor;

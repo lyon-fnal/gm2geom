@@ -53,6 +53,8 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   stationColor( p.get<std::vector<double>>("stationColor")),
   manifoldColor( p.get<std::vector<double>>("manifoldColor")),
   displayStationMaterial( p.get<bool>("displayStationMaterial")),
+  displayPipingMaterial( p.get<bool>("displayPipingMaterial")),
+  pipingColor( p.get<std::vector<double>>("pipingColor")),
   displayStraw( p.get<bool>("displayStraw")),
   strawColor( p.get<std::vector<double>>("strawColor")),
   gasColor( p.get<std::vector<double>>("gasColor")),
@@ -73,7 +75,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] + strawStationPiping);
+    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] );
   }
   
   // Some straw parameters
