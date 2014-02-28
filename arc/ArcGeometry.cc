@@ -25,12 +25,12 @@ gm2geom::ArcGeometry::ArcGeometry(std::string const & detName) :
 void gm2geom::ArcGeometry::print() const {
   
   // Use the MessageLogger (see https://cdcvs.fnal.gov/redmine/projects/novaart/wiki/Using_the_Framework#MessageLogger )
-  mf::LogInfo("ArcGeometry") << "Arc geometry is" << "\n"
-  << "    arc_rMin="         << arc_rMin << "\n"
-  << "    arc_rMax="         << arc_rMax << "\n"
-  << "    arc11_rExtension=" << arc11_rExtension << "\n"
-  << "    arc_z="            << arc_z << "\n"
-  << "    arc_Sphi="         << arc_Sphi << "\n"
-  << "    arc_Dphi="         << arc_Dphi;
+  mf::LogInfo("ArcGeometry") << "Arc geometry is" << "\n"			     
+			     << "    arc_rMin="         << arc_rMin << "\n"
+			     << "    arc_rMax="         << arc_rMax << "\n"
+			     << "    arc11_rExtension=" << arc11_rExtension << "\n"
+			     << "    arc_z="            << arc_z << "\n"
+			     << "    arc_Sphi="         << arc_Sphi << "\n"
+			     << "    arc_Dphi="         << arc_Dphi;
 }
 
