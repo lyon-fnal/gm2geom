@@ -64,6 +64,11 @@ namespace gm2geom {
     const double turn_sphi;
     const double turn_dphi;
     
+    const double trackerExtensionL;
+    const double trackerExtensionW;
+    const double trackerExtPlacementX;
+    const double trackerExtPlacementY;
+    
     const bool displayWall;
     const std::vector<double> wallColor;
     

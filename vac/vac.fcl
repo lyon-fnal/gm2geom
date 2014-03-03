@@ -4,7 +4,7 @@
 
 BEGIN_PROLOG
 vac_geom : {
-
+  
   // General values ---
   inflectorExtensionValue : 750
   topBottomWall: 78.65
@@ -32,6 +32,7 @@ vac_geom : {
   zz: [2.0, 2.0]  // in
   ext: [1.0, 1.0] // in
   
+    
   // Tracker ---
   tracker_sphi:  0.1 // deg
   tracker_dphi: 0.01 // deg
@@ -41,6 +42,17 @@ vac_geom : {
   turn_sphi: 24   // deg
   turn_dphi: 0.01 // deg  
   
+  //Values that define the scallop extension that 
+  //is in place for those scallop regions where a tracker
+  //is placed. Note that which scallop regions to add this 
+  //extension on is determined from the StrawTrackerGeometry
+  //based on the whichScallopLocations varaible. But the sizes 
+  //and placement variables are placed here. 
+
+  trackerExtensionL: 41.5 // in
+  trackerExtensionW: 6.0 // in
+  trackerExtPlacementX: 6730.0
+  trackerExtPlacementY: 840
   // Visibility
   // For colors, [red, green, blue, opacity]
   displayWall : true
