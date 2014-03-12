@@ -67,8 +67,10 @@ namespace gm2geom {
     const double trackerExtensionL;
     const double trackerExtensionW;
     const double trackerExtPlacementX;
-    const double trackerExtPlacementY;
+    const double trackerExtPlacementFromCalo;
+    const double trackerExtWallThick;
     
+    double  trackerExtBuildW[2], trackerExtBuildL[2], trackerExtBuildH[2];
     const bool displayWall;
     const std::vector<double> wallColor;
     

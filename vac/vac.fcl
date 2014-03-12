@@ -7,7 +7,8 @@ vac_geom : {
   
   // General values ---
   inflectorExtensionValue : 750
-  topBottomWall: 78.65
+  //topBottomWall: 78.65
+  topBottomWall: 150
   outerWallThickness: 9.65
   torus_rmin: 277 // in
   torus_rmax: [284.75, 284.37] // in
@@ -50,9 +51,10 @@ vac_geom : {
   //and placement variables are placed here. 
 
   trackerExtensionL: 41.5 // in
-  trackerExtensionW: 6.0 // in
-  trackerExtPlacementX: 6730.0
-  trackerExtPlacementY: 840
+  trackerExtensionW: 8.0 // in
+  trackerExtPlacementX: 7010
+  trackerExtPlacementFromCalo: 2.5 //in 
+  trackerExtWallThick: 0.75 //in
   // Visibility
   // For colors, [red, green, blue, opacity]
   displayWall : true

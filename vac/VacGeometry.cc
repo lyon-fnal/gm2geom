@@ -44,7 +44,8 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
   trackerExtensionL( p.get<double>("trackerExtensionL") * in),
   trackerExtensionW( p.get<double>("trackerExtensionW") * in),
   trackerExtPlacementX( p.get<double>("trackerExtPlacementX") *mm),
-  trackerExtPlacementY( p.get<double>("trackerExtPlacementY") *mm),
+  trackerExtPlacementFromCalo( p.get<double>("trackerExtPlacementFromCalo") *in),
+  trackerExtWallThick( p.get<double>("trackerExtWallThick") *in),
   displayWall( p.get<bool>("displayWall")),
   wallColor( p.get<std::vector<double>>("wallColor")),
   displayVac( p.get<bool>("displayVac")),
@@ -82,7 +83,7 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
   pt_c[vacuumRegion].setPhi(vacPhi[2]);
   pt_o[vacuumRegion].setR(vacR[3]);
   pt_o[vacuumRegion].setPhi(wallPhi[3]);
-  
+
   const double alpha = 1.05;
   for (unsigned int i = 0; i < 2; ++i ) {
     pt_d[i] = pt_b[i] + alpha*(pt_c[i] - pt_b[i]);
@@ -111,6 +112,18 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
     xO[i] = xI[i] - zz[i]*std::tan(phi_q);
   }
   
+  //Extension building
+  //determine how big to make the extension box for the walls and
+  //the interior vacuum volume
+
+  trackerExtBuildL[wallRegion] = trackerExtensionL/2; 
+  trackerExtBuildW[wallRegion] = trackerExtensionW/2; 
+  trackerExtBuildH[wallRegion] = torus_z[0]; 
+
+  trackerExtBuildL[vacuumRegion] = trackerExtensionL/2 - trackerExtWallThick; 
+  trackerExtBuildW[vacuumRegion] = trackerExtensionW/2 - trackerExtWallThick; 
+  trackerExtBuildH[vacuumRegion] = torus_z[0]/2-trackerExtWallThick; 
+
   // trackers
   track_rMin = pt_a[vacuumRegion].r();
   turn_rMin = track_rMin;
