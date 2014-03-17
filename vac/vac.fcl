@@ -53,9 +53,9 @@ vac_geom : {
   trackerExtensionL: 41.5 // in
   trackerExtensionW: 8.0 // in
   trackerExtPlacementX: 6894.8
-  //trackerExtPlacementFromCalo: 2.5 //in 
-  trackerExtPlacementFromCalo: 0.0 //in 
+  trackerExtPlacementFromCalo: 2.7 //in 
   trackerExtWallThick: 0.75 //in
+
   // Visibility
   // For colors, [red, green, blue, opacity]
   displayWall : true

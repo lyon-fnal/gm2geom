@@ -69,6 +69,9 @@ namespace gm2geom {
     const double trackerExtPlacementX;
     const double trackerExtPlacementFromCalo;
     const double trackerExtWallThick;
+    const double scallopL = 1415;
+    double distToExtEdge;
+    double distCenterExtAlongScallop;
     
     double  trackerExtBuildW[2], trackerExtBuildL[2], trackerExtBuildH[2];
     const bool displayWall;

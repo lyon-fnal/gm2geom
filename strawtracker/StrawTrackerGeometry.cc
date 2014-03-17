@@ -1,6 +1,7 @@
 // Implementation of the StrawTrackerGeometry struct. 
 
 #include "StrawTrackerGeometry.hh"
+#include "../vac/VacGeometry.hh"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 #include <iostream>
 #include <sstream>
@@ -67,11 +68,11 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   // Half-sizes of the edges of the stations, necessary for Geant4 placement.
   strawStationHeightHalf = strawStationHeight/2;
   strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
+  const gm2geom::VacGeometry vacg("vac");
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth[i]/2);
-    //strawStationLocation[i] = 1434-strawStationLocation[i];
-    strawStationLocation[i] = 1415-strawStationLocation[i];
+    strawStationLocation[i] = vacg.distToExtEdge - strawStationLocation[i];
   }
   
   // Get total offset in tracker x coordinate.
