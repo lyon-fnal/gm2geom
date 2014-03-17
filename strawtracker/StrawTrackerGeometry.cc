@@ -70,12 +70,13 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth[i]/2);
-    strawStationLocation[i] = 1436-strawStationLocation[i];
+    //strawStationLocation[i] = 1434-strawStationLocation[i];
+    strawStationLocation[i] = 1415-strawStationLocation[i];
   }
   
   // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationOffset[i] );
+    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationPiping + strawStationOffset[i] );
   }
   
   // Some straw parameters

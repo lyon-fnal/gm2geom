@@ -4,13 +4,14 @@
 
 //#include "geom/strawStationParameters-nopiping.fcl"
 //#include "geom/strawStationParameters.fcl"
-#include "geom/strawStationParameters-vacuumExt.fcl"
+//#include "geom/strawStationParameters-vacuumExt.fcl"
+#include "geom/strawStationParameters-test.fcl"
 
 BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [12]
+  whichScallopLocations: [12,13]
   //whichScallopLocations: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 
 
@@ -69,13 +70,16 @@ strawtracker_geom : {
   //3D-Models and are determined on the *bottom* manifold
   xPositionStraw0: [27.19, 29.96, 17.98, 15.21]
   yPosition: [39.36, 44.12, 60.91, 65.68]
-  
-  displayStation: false
+
+
+
+  //Display settings for the trackers
+  displayStation: true
   stationColor: [0.2, 0.6, 1.0, 1.0] //blue
   manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
-  displayStationMaterial: true
+  displayStationMaterial: false
 
-  displayPipingMaterial: true
+  displayPipingMaterial: false
   pipingColor: [0.2, 0.6, 1.0, 1.0]
   displayStraw: true 
   strawColor: [0.9, 0.8, 0.2, 1.0]

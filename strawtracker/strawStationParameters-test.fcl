@@ -1,0 +1,13 @@
+BEGIN_PROLOG
+
+strawStationLocation: [0]
+strawStationSize: [260.2]
+strawStationType: [40]
+strawStationOffset: [0]
+//strawStationOffset: [0,0,0,0,0,0,0,0,0]
+strawStationWidth: [78]
+strawStationPiping: 1 
+strawStationHeight: 138
+strawStationManifoldHeight: 28.75
+strawStationManifoldThickness: 3.0
+END_PROLOG
