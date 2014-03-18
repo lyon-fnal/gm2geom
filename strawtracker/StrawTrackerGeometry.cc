@@ -10,9 +10,11 @@
 // Rather than #including G4globals.hh, just declare we'll use the units we need
 // from CLHEP/Units/SystemOfUnits.h.
 #include "CLHEP/Units/SystemOfUnits.h"
+#include "gm2ringsim/common/conversions.hh"
 using CLHEP::mm;
 using CLHEP::deg;
 using CLHEP::cm;
+using gm2ringsim::in;
 
 // Use the view labels defined in WireID
 using gm2strawtracker::u_view;
@@ -27,15 +29,14 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
   strawStationLocation( p.get<std::vector<double>>("strawStationLocation")),
   strawStationSize( p.get<std::vector<double>>("strawStationSize")),
-  strawStationPiping( p.get<double>("strawStationPiping")),
-  strawStationOffset( p.get<std::vector<double>>("strawStationOffset")),
   strawStationType( p.get<std::vector<int>>("strawStationType")),
   strawView( p.get<double>("strawView")),
   strawLayers( p.get<double>("strawLayers")),
   strawStationHeight( p.get<double>("strawStationHeight")),
   strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationManifoldThickness( p.get<double>("strawStationManifoldThickness")),
-  strawStationWidth( p.get<std::vector<double>>("strawStationWidth")),
+  strawStationWidth( p.get<double>("strawStationWidth")),
+  strawStationSpacing( p.get<double>("strawStationSpacing") *in),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
@@ -46,8 +47,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   layerAngle( p.get<double>("layerAngle") *deg),
   supportPostRadius( p.get<double>("supportPostRadius") ),
   supportPostYPosition( p.get<double>("supportPostYPosition") ),
-  supportPlateThickness( p.get<double>("supportPlateThickness") ),
-  supportPlateWidth( p.get<double>("supportPlateWidth") ),
   xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
   yPosition( p.get<std::vector<double>>("yPosition")),
   displayStation( p.get<bool>("displayStation")),
@@ -71,13 +70,13 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   const gm2geom::VacGeometry vacg("vac");
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
-    strawStationWidthHalf.push_back(strawStationWidth[i]/2);
-    strawStationLocation[i] = vacg.distToExtEdge - strawStationLocation[i];
+    strawStationWidthHalf.push_back(strawStationWidth/2);
+    strawStationLocation[i] = vacg.distToExtEdge -vacg.trackerExtWallThick-(i+1)*strawStationWidth/2+strawStationSpacing*i;
   }
   
   // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i] + strawStationPiping + strawStationOffset[i] );
+    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i]);
   }
   
   // Some straw parameters
@@ -136,7 +135,7 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   int plane = Plane(wire);
   
   // It's pretty easy; we just need the 'y' position of the layer.
-  int lastStationPosition = strawStationWidth.size()-1;
+  int lastStationPosition = strawStationType.size()-1;
   if (wire.getStation() == lastStationPosition) return yPositionLastStation[plane%4];
   else return yPosition[plane%4];
   
@@ -150,7 +149,7 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
 CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::
 trackerPosition(WireID const& wire) const{
   // Get station position, and add in offsets for x.
-  double x = wireXPosition(wire) + strawStationOffset[wire.getStation()] + strawStationPiping;
+  double x = wireXPosition(wire);
   // This is the center of the wire, so by definition it has y=0.
   double y = 0;
   // Get station position and add in the location of the station for z

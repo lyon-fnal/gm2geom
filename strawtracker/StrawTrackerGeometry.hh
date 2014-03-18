@@ -52,7 +52,6 @@ namespace gm2geom {
     std::vector<int> whichScallopLocations;
     std::vector<double> strawStationLocation;
     std::vector<double> strawStationSize;
-    double strawStationPiping;
     std::vector<double> strawStationOffset;
     std::vector<int> strawStationType;
     int strawView;
@@ -60,7 +59,8 @@ namespace gm2geom {
     const double strawStationHeight;
     const double strawStationManifoldHeight;
 		const double strawStationManifoldThickness;
-    std::vector<double> strawStationWidth;
+    const double strawStationWidth;
+    const double strawStationSpacing;
     //const double strawManifoldThickness;    
     // Straw parameters
     double innerRadiusOfTheStraw;

@@ -23,11 +23,8 @@ strawtracker_geom : {
   // strawStationLocation - Distance from the calo that the center of the station is placed.
   // strawStationsSize - Radial size of the stations
   // strawStationType - How many straws are in each layer (multiple of 8!)
-  // strawStationOffset - Stations follow the curve of the ring rather than the edge of the
-  //                     scallop so if there is room some stations can be pushed farther out
   // strawStationWidth - Width of the station along the scallop line. Note the last station
   //                    includes the overhang while the others are just the width of one side of the manifold
-  // strawStationPiping - To allow for some piping which pushes the stations farther away from the scallop edge.
   // strawStationHeight - Full height of the station
   
   //////////////////////////////////////////////////////
@@ -35,9 +32,8 @@ strawtracker_geom : {
   strawStationLocation:@local::strawStationLocation
   strawStationSize:@local::strawStationSize
   strawStationType:@local::strawStationType
-  strawStationOffset:@local::strawStationOffset
   strawStationWidth:@local::strawStationWidth
-  strawStationPiping:@local::strawStationPiping
+  strawStationSpacing:@local::strawStationSpacing
   strawStationHeight:@local::strawStationHeight
   strawStationManifoldHeight:@local::strawStationManifoldHeight
   strawStationManifoldThickness:@local::strawStationManifoldThickness
