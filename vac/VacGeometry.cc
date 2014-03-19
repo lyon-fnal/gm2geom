@@ -123,7 +123,7 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
 
   trackerExtBuildL[vacuumRegion] = trackerExtensionL/2 - trackerExtWallThick; 
   trackerExtBuildW[vacuumRegion] = trackerExtensionW/2 + 50;
-  trackerExtBuildH[vacuumRegion] = torus_z[0]/2-trackerExtWallThick; 
+  trackerExtBuildH[vacuumRegion] = torus_z[0]-trackerExtWallThick; 
   
   distToExtEdge = scallopL - trackerExtPlacementFromCalo;
   distCenterExtAlongScallop = distToExtEdge - trackerExtBuildL[wallRegion];
