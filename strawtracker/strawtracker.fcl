@@ -29,7 +29,6 @@ strawtracker_geom : {
   
   //////////////////////////////////////////////////////
   
-  strawStationLocation:@local::strawStationLocation
   strawStationSize:@local::strawStationSize
   strawStationType:@local::strawStationType
   strawStationWidth:@local::strawStationWidth

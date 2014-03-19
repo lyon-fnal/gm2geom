@@ -1,8 +1,7 @@
 BEGIN_PROLOG
 
-strawStationLocation: [0]
-strawStationSize: [260.2]
-strawStationType: [40]
+strawStationSize: [260.2,260.2,260.2,260.2,260.2,260.2,260.2,260.2,260.2]
+strawStationType: [40,40,40,40,40,40,40,40,40]
 strawStationWidth: 100
 strawStationSpacing: 0.7580
 strawStationHeight: 138

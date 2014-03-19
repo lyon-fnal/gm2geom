@@ -50,7 +50,7 @@ vac_geom : {
   //based on the whichScallopLocations varaible. But the sizes 
   //and placement variables are placed here. 
 
-  trackerExtensionL: 41.5 // in
+  trackerExtensionL: 43.0 // in
   trackerExtensionW: 8.0 // in
   trackerExtPlacementX: 6894.8
   trackerExtPlacementFromCalo: 2.7 //in 

@@ -27,7 +27,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   GeometryBase(detName),
     // Extract FHiCL parameters.
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
-  strawStationLocation( p.get<std::vector<double>>("strawStationLocation")),
   strawStationSize( p.get<std::vector<double>>("strawStationSize")),
   strawStationType( p.get<std::vector<int>>("strawStationType")),
   strawView( p.get<double>("strawView")),
@@ -71,7 +70,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
     strawStationWidthHalf.push_back(strawStationWidth/2);
-    strawStationLocation[i] = vacg.distToExtEdge -vacg.trackerExtWallThick-(i+1)*strawStationWidth/2+strawStationSpacing*i;
+    strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-(i+1)*strawStationWidth/2-i*strawStationWidth/2-strawStationSpacing*i);
   }
   
   // Get total offset in tracker x coordinate.
