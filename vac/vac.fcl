@@ -7,8 +7,7 @@ vac_geom : {
   
   // General values ---
   inflectorExtensionValue : 750
-  //topBottomWall: 78.65
-  topBottomWall: 150
+  topBottomWall: 78.65
   outerWallThickness: 9.65
   torus_rmin: 277 // in
   torus_rmax: [284.75, 284.37] // in
