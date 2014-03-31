@@ -50,8 +50,10 @@ vac_geom : {
   //and placement variables are placed here. 
 
   trackerExtensionL: 43.0 // in
-  trackerExtensionW: 8.0 // in
-  trackerExtPlacementX: 6894.8
+  //trackerExtensionW: 8.0 // in
+  //trackerExtPlacementX: 6894.8
+  trackerExtensionW: 4.0 // in
+  trackerExtPlacementX: 6945.6  
   trackerExtPlacementFromCalo: 2.7 //in 
   trackerExtWallThick: 0.75 //in
 
