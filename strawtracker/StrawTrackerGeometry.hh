@@ -60,6 +60,7 @@ namespace gm2geom {
     const double strawStationManifoldHeight;
 		const double strawStationManifoldThickness;
     const double strawStationWidth;
+    double strawStationManifoldWidth;
     const double strawStationSpacing;
     //const double strawManifoldThickness;    
     // Straw parameters

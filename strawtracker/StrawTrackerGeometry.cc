@@ -35,6 +35,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
   strawStationManifoldThickness( p.get<double>("strawStationManifoldThickness")),
   strawStationWidth( p.get<double>("strawStationWidth")),
+  strawStationManifoldWidth( p.get<double>("strawStationManifoldWidth")),
   strawStationSpacing( p.get<double>("strawStationSpacing") *in),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
@@ -62,16 +63,21 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 {
   
   // A couple of derived quantities
-  
+  std::cout<<"manifold width in geometry: "<<strawStationManifoldWidth<<std::endl;  
   // Half-sizes of the edges of the stations, necessary for Geant4 placement.
   strawStationHeightHalf = strawStationHeight/2;
   strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
   const gm2geom::VacGeometry vacg("vac");
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
+    
     strawStationWidthHalf.push_back(strawStationWidth/2);
     strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-(i+1)*strawStationWidth/2-i*strawStationWidth/2-strawStationSpacing*i);
   }
+  //have to reverse the order because the placement is determined from the calorimeter 
+  //in the above push_back call. However the first station really needs to be the 
+  //one farthest from the calorimeter. 
+  std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
   
   // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
@@ -87,7 +93,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){
     yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
-    yPosition[i] = yPosition[i] - strawStationWidthHalf[0];
+    yPosition[i] = yPosition[i] - strawStationWidth/2;
   }
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);

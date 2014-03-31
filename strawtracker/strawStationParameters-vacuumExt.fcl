@@ -1,12 +1,11 @@
 BEGIN_PROLOG
 
-strawStationLocation: [786, 701, 616, 531, 446, 361, 276, 191, 91]
-strawStationSize: [128.8, 128.8, 128.8, 128.8, 172.6, 216.4, 216.4, 216.4, 216.4 ]
-strawStationType: [16,16,16,16,24,32,32,32,32]
-strawStationOffset: [0,15,25,35,0,-40,-35,-30,-25]
-strawStationWidth: [78,78,78,78,78,78,78,78,105.04]
-strawStationPiping: 57.3
+strawStationSize: [213.02,213.02,256.51,256.51,256.51,300.0,300.0,300.0,300.0]
+strawStationType: [16,16,24,24,24,32,32,32,32]
+strawStationWidth: 110
+strawStationManifoldWidth: 70.32
+strawStationSpacing: 0.3155
 strawStationHeight: 138
-strawStationManifoldHeight: 28.75
+strawStationManifoldHeight: 22.5
 strawStationManifoldThickness: 3.0
 END_PROLOG

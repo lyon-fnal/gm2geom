@@ -4,14 +4,13 @@
 
 //#include "geom/strawStationParameters-nopiping.fcl"
 //#include "geom/strawStationParameters.fcl"
-//#include "geom/strawStationParameters-vacuumExt.fcl"
-#include "geom/strawStationParameters-test.fcl"
+#include "geom/strawStationParameters-vacuumExt.fcl"
 
 BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [12,13]
+  whichScallopLocations: [12,18]
   //whichScallopLocations: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 
 
@@ -32,6 +31,7 @@ strawtracker_geom : {
   strawStationSize:@local::strawStationSize
   strawStationType:@local::strawStationType
   strawStationWidth:@local::strawStationWidth
+  strawStationManifoldWidth:@local::strawStationManifoldWidth
   strawStationSpacing:@local::strawStationSpacing
   strawStationHeight:@local::strawStationHeight
   strawStationManifoldHeight:@local::strawStationManifoldHeight
@@ -51,7 +51,7 @@ strawtracker_geom : {
   startAngleOfTheStraw: 0 //deg
   spanningAngleOfTheStraw:  360. //deg
 
-  distBtwnWires: 5.55 //mm
+  distBtwnWires: 6.0 //mm
   layerAngle: 7.5 //deg
   
   supportPostRadius: 3.5 //mm
@@ -63,9 +63,9 @@ strawtracker_geom : {
   //the corner which is closest to the scallop edge
   //and away from the calo. These measurements are taken off
   //3D-Models and are determined on the *bottom* manifold
-  xPositionStraw0: [27.19, 29.96, 17.98, 15.21]
-  yPosition: [39.36, 44.12, 60.91, 65.68]
-
+  //xPositionStraw0: [107.83, 105.05, 93.09, 95.81]
+  xPositionStraw0: [93.88,91.1, 79.14, 81.86]
+  yPosition: [42.42, 47.18, 64.02, 68.78]
 
 
   //Display settings for the trackers
