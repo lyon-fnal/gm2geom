@@ -98,13 +98,13 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
-  numberOfPlanesPerScallop = strawStationSize.size()*(strawView+strawLayers);
+  numberOfPlanesPerScallop = strawStationSize.size()*(strawView*strawLayers);
 }
 
-// Calculate the total plane number of a wire. Does not use the wire# itself,
+// Calculate the  plane number of a wire within a station. Does not use the wire# itself,
 // just the station, view, and layer.
 int gm2geom::StrawTrackerGeometry::Plane(WireID wire) const {
-  return wire.getStation()*(strawView+strawLayers) + wire.getView()*2 + wire.getLayer();
+  return wire.getLayer() + wire.getView()*strawLayers; 
 }
 
 int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
@@ -116,10 +116,10 @@ int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
 // coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   
-  int plane = Plane(wire);
-  
+  int innerPlaneNumber = Plane(wire);
+
   // Get the x position of the bottom of the wire
-  double x =  xPositionStraw0[plane%4] + wire.getWire()*distBtwnWires;
+  double x =  xPositionStraw0[innerPlaneNumber] + wire.getWire()*distBtwnWires;
 
   // Move it forward or backward according to the angle of the straws, depending
   // on the view.
@@ -137,13 +137,11 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
 // station (Geant4) coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   
-  int plane = Plane(wire);
   
+  int innerPlaneNumber = Plane(wire);
   // It's pretty easy; we just need the 'y' position of the layer.
-  int lastStationPosition = strawStationType.size()-1;
-  if (wire.getStation() == lastStationPosition) return yPositionLastStation[plane%4];
-  else return yPosition[plane%4];
-  
+
+  return yPosition[innerPlaneNumber];
 }
 
 
