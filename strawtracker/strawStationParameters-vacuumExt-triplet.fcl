@@ -1,0 +1,15 @@
+BEGIN_PROLOG
+
+strawStationSize: [213.02,213.02,256.51,256.51,256.51,300.0,300.0,300.0,300.0]
+strawStationType: [16,16,24,24,24,32,32,32,32]
+strawStationWidth: 110
+strawStationManifoldWidth: 70.32
+strawStationSpacing: 0.3155
+strawStationHeight: 138
+strawStationManifoldHeight: 22.5
+strawStationManifoldThickness: 3.0
+
+strawLayers: 3
+xPositionStraw0: [93.88, 91.88, 89.88, 79.14, 81.14, 83.14]
+yPosition: [42.42, 47.18, 51.94, 64.02, 68.78, 73.54]
+END_PROLOG
