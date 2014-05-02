@@ -8,4 +8,8 @@ strawStationSpacing: 0.3155
 strawStationHeight: 138
 strawStationManifoldHeight: 22.5
 strawStationManifoldThickness: 3.0
+
+strawLayers: 2
+xPositionStraw0: [93.88,91.1, 79.14, 81.86]
+yPosition: [42.42, 47.18, 64.02, 68.78]
 END_PROLOG
