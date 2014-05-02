@@ -43,7 +43,7 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
   turn_dphi( p.get<double>("turn_dphi") * deg),
   trackerExtensionL( p.get<double>("trackerExtensionL") * in),
   trackerExtensionW( p.get<double>("trackerExtensionW") * in),
-  trackerExtPlacementX( p.get<double>("trackerExtPlacementX") *mm),
+  //trackerExtPlacementX( p.get<double>("trackerExtPlacementX") *mm),
   trackerExtPlacementFromCalo( p.get<double>("trackerExtPlacementFromCalo") *in),
   trackerExtWallThick( p.get<double>("trackerExtWallThick") *in),
   displayWall( p.get<bool>("displayWall")),
@@ -118,19 +118,19 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
     
   
   trackerExtBuildL[wallRegion] = trackerExtensionL/2; 
-  trackerExtBuildW[wallRegion] = trackerExtensionW/2; 
+  trackerExtBuildW[wallRegion] = trackerExtensionW/2 + trackerExtWallThick; 
   trackerExtBuildH[wallRegion] = torus_z[0]; 
 
   trackerExtBuildL[vacuumRegion] = trackerExtensionL/2 - trackerExtWallThick; 
-  trackerExtBuildW[vacuumRegion] = trackerExtensionW/2 + 50;
+  trackerExtBuildW[vacuumRegion] = trackerExtensionW/2 + outerWallThickness*2;
   trackerExtBuildH[vacuumRegion] = torus_z[1]; 
-  
+  trackerExtPlacementX = vacR[0];
   distToExtEdge = scallopL - trackerExtPlacementFromCalo;
   distCenterExtAlongScallop = distToExtEdge - trackerExtBuildL[wallRegion];
   // trackers
   track_rMin = pt_a[vacuumRegion].r();
   turn_rMin = track_rMin;
-
+  
   track_rMax = torus_rmax[vacuumRegion];
   turn_rMax = track_rMax;
 }

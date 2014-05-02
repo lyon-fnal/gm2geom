@@ -66,11 +66,10 @@ namespace gm2geom {
     
     const double trackerExtensionL;
     const double trackerExtensionW;
-    const double trackerExtPlacementX;
+    double trackerExtPlacementX;
     const double trackerExtPlacementFromCalo;
     const double trackerExtWallThick;
-//    const double scallopL = 1415; //8" extension
-    const double scallopL = 1426.25; //4" extension
+    const double scallopL = 1433.63; 
     double distToExtEdge;
     double distCenterExtAlongScallop;
     
