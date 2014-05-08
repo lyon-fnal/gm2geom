@@ -43,7 +43,6 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
   turn_dphi( p.get<double>("turn_dphi") * deg),
   trackerExtensionL( p.get<double>("trackerExtensionL") * in),
   trackerExtensionW( p.get<double>("trackerExtensionW") * in),
-  //trackerExtPlacementX( p.get<double>("trackerExtPlacementX") *mm),
   trackerExtPlacementFromCalo( p.get<double>("trackerExtPlacementFromCalo") *in),
   trackerExtWallThick( p.get<double>("trackerExtWallThick") *in),
   displayWall( p.get<bool>("displayWall")),
@@ -116,15 +115,34 @@ gm2geom::VacGeometry::VacGeometry(std::string const & detName) :
   //determine how big to make the extension box for the walls and
   //the interior vacuum volume
     
-  
+
   trackerExtBuildL[wallRegion] = trackerExtensionL/2; 
-  trackerExtBuildW[wallRegion] = trackerExtensionW/2 + trackerExtWallThick; 
+  trackerExtBuildW[wallRegion] = (trackerExtensionW + trackerExtWallThick + outerWallThickness)/2; 
   trackerExtBuildH[wallRegion] = torus_z[0]; 
 
   trackerExtBuildL[vacuumRegion] = trackerExtensionL/2 - trackerExtWallThick; 
   trackerExtBuildW[vacuumRegion] = trackerExtensionW/2 + outerWallThickness*2;
   trackerExtBuildH[vacuumRegion] = torus_z[1]; 
   trackerExtPlacementX = vacR[0];
+
+  //convert scallop points to an (x,y) coordinate system 
+  //in order to calculate the length of the scallop. The dimensions
+  //for the scallop extension were given by Kevin Lynch in [r,theta]
+  //
+  //x = r*cos(theta)
+  //y = r*sin(theta)
+  //
+  //Do this for both inner points of the scallop edge. Diagram and more
+  //detailed documentation can be found in the gm2ringsim documentation. 
+
+  double x_vac0 = vacR[0] * cos(vacPhi[0]);
+  double y_vac0 = vacR[0] * sin(vacPhi[0]);
+
+  double x_vac1 = vacR[1] * cos(vacPhi[1]);
+  double y_vac1 = vacR[1] * sin(vacPhi[1]);
+
+  scallopL = sqrt((x_vac0-x_vac1)*(x_vac0-x_vac1) + (y_vac0-y_vac1)*(y_vac0-y_vac1));
+
   distToExtEdge = scallopL - trackerExtPlacementFromCalo;
   distCenterExtAlongScallop = distToExtEdge - trackerExtBuildL[wallRegion];
   // trackers
