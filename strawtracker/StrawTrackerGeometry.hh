@@ -76,8 +76,6 @@ namespace gm2geom {
     
     double supportPostRadius;
     double supportPostYPosition;
-    double supportPlateThickness;
-    double supportPlateWidth;
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
@@ -103,7 +101,8 @@ namespace gm2geom {
     std::vector<double> strawStationSizeHalf;
     double strawStationHeightHalf;
     double strawStationManifoldHeightHalf;
-    std::vector<double> strawStationWidthHalf;
+    double strawStationManifoldWidthHalf;
+    double strawStationWidthHalf;
     // The distance (x, in tracker coordinates) from the flat edge of the
     // scallop to the straw station center.
     std::vector<double> strawStationCenterFromEdge;

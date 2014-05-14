@@ -63,16 +63,22 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 {
   
   // A couple of derived quantities
-  std::cout<<"manifold width in geometry: "<<strawStationManifoldWidth<<std::endl;  
-  // Half-sizes of the edges of the stations, necessary for Geant4 placement.
+  // Half-sizes of the edges of the stations, necessary for Geant4 building.
   strawStationHeightHalf = strawStationHeight/2;
   strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
+  strawStationManifoldWidthHalf = strawStationManifoldWidth/2;
+  
+  strawStationWidthHalf = strawStationWidth/2;
+
   const gm2geom::VacGeometry vacg("vac");
+  double distToNextStation;
+
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
+
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
-    
-    strawStationWidthHalf.push_back(strawStationWidth/2);
-    strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-(i+1)*strawStationWidth/2-i*strawStationWidth/2-strawStationSpacing*i);
+    distToNextStation = strawStationWidthHalf + i*(strawStationWidth + strawStationSpacing);
+    strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-distToNextStation);
+
   }
   //have to reverse the order because the placement is determined from the calorimeter 
   //in the above push_back call. However the first station really needs to be the 
@@ -92,8 +98,9 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){
-    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
-    yPosition[i] = yPosition[i] - strawStationWidth/2;
+//    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
+    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf);
+    yPosition[i] = yPosition[i] - strawStationWidthHalf;
   }
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
