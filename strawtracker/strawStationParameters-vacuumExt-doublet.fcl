@@ -10,6 +10,12 @@ strawStationManifoldHeight: 22.5
 strawStationManifoldThickness: 3.0
 
 strawLayers: 2
+
+//These are the positions of the straw in each layer
+//that is closest to the scallop edge as measured from
+//the corner which is closest to the scallop edge
+//and away from the calo. These measurements are taken off
+//3D-Models and are determined on the *bottom* manifold
 xPositionStraw0: [93.88,90.88, 79.14, 82.14]
 yPosition: [42.42, 47.18, 64.02, 68.78]
 END_PROLOG
