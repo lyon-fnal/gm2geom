@@ -49,6 +49,7 @@ namespace gm2geom {
         const std::string photodetectorShape; // round or square
         const double photodetectorSize;
         const double photodetectorDepth;   // "pmtDepth" in g2migtrace
+        const std::string couplingMaterial;
         const double opticalCouplingDepth; // "epoxyDepth" in g2migtrace
         
         // diffuser

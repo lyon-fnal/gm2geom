@@ -36,6 +36,7 @@ gm2geom::CalorimeterGeometry::CalorimeterGeometry(std::string const & detName) :
   photodetectorShape(    p.get<std::string>("photodetectorShape")           ),
   photodetectorSize(     p.get<double>("photodetectorSize")    * cm         ),
   photodetectorDepth(    p.get<double>("photodetectorDepth")   * cm         ),
+  couplingMaterial(      p.get<std::string>("couplingMaterial")             ),
   opticalCouplingDepth(  p.get<double>("opticalCouplingDepth") * cm         ),
   diffuser(              p.get<bool>("diffuser")                            ),
   diffuserDepth(         p.get<double>("diffuserDepth")        * cm         ),

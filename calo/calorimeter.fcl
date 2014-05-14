@@ -17,10 +17,11 @@ calorimeter_geom : {
   frontWrappingHole: false
   frontWrappingHoleSize: 1.25 // cm
   // photodetector parameters
-  photodetectorShape: "Square"
+  photodetectorShape: "Square" // use "Square" or "Circle"
   photodetectorSize:    1.2  // cm
   photodetectorDepth:   0.05 // cm
-  opticalCouplingDepth: 0.05 // cm
+  couplingMaterial: "Nusil" // use "Nusil" or "Bicron"
+  opticalCouplingDepth: 0.01 // cm
   // diffuser
   diffuser: false
   diffuserDepth: 0.0 // cm
