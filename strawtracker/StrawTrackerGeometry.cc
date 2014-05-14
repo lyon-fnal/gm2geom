@@ -65,14 +65,24 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   // A couple of derived quantities
   // Half-sizes of the edges of the stations, necessary for Geant4 building.
   strawStationHeightHalf = strawStationHeight/2;
+  strawStationWidthHalf = strawStationWidth/2;
+  
+  //Half sizes of the manifolds
   strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
   strawStationManifoldWidthHalf = strawStationManifoldWidth/2;
-  
-  strawStationWidthHalf = strawStationWidth/2;
+
+  //Calculate the straw parameters based on the size of the station and manifolds
+  heightOfTheStraw = strawStationHeight - 2*strawStationManifoldHeight;
+  lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
+  halfLengthOfTheStraw = lengthOfTheStraw/2;
+  halfHeightOfTheStraw = heightOfTheStraw/2;
 
   const gm2geom::VacGeometry vacg("vac");
   double distToNextStation;
 
+  //set the half size of the station and determine where the center
+  //of each station is positioned in the x coordinate system (of the tracker)
+ 
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
 
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
@@ -80,21 +90,18 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
     strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-distToNextStation);
 
   }
-  //have to reverse the order because the placement is determined from the calorimeter 
-  //in the above push_back call. However the first station really needs to be the 
-  //one farthest from the calorimeter. 
+
+  //The location is set by the first element in the vector being the station closest to the 
+  //calorimeter. In actuality we want this to be the last station and thus the order
+  //of the vector needs to be reversed to take this into account. 
   std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
   
   // Get total offset in tracker x coordinate.
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    strawStationCenterFromEdge.push_back(strawStationSizeHalf[i]);
+    distShift.push_back(vacg.trackerExtensionW + vacg.outerWallThickness -  strawStationSizeHalf[i]);
+
   }
   
-  // Some straw parameters
-  heightOfTheStraw = strawStationHeight - 2*strawStationManifoldHeight;
-  lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
-  halfLengthOfTheStraw = lengthOfTheStraw/2;
-  halfHeightOfTheStraw = heightOfTheStraw/2;
   
   // Get the station y coordinate for each layer.
   for (unsigned int i = 0; i<yPosition.size(); i++){

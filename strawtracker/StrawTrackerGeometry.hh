@@ -105,7 +105,8 @@ namespace gm2geom {
     double strawStationWidthHalf;
     // The distance (x, in tracker coordinates) from the flat edge of the
     // scallop to the straw station center.
-    std::vector<double> strawStationCenterFromEdge;
+    std::vector<double> distShift;
+    
     // The total number of stations to be placed (counting multiple scallop
     // locations)
     int numberOfStations;
