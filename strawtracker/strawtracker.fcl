@@ -11,29 +11,37 @@ BEGIN_PROLOG
 strawtracker_geom : {
 
   whichScallopLocations: [12,13]
-  //whichScallopLocations: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-  //whichScallopLocations: [0,2,4,6,8,10,12,14,16,18,20,22]
-
 
   // Straw Station variable descriptions 
   // Defined in strawStationParameter file that 
   // you include at the top of this file. 
+
   /////////////////////////////////////////////////////
-  
-  // strawStationLocation - Distance from the calo that the center of the station is placed.
+  //
+  //----------VARIABLES FOR THE STATION/MANIFOLD DESIGN------------//
   // strawStationsSize - Radial size of the stations
   // strawStationType - How many straws are in each layer (multiple of 8!)
-  // strawStationWidth - Width of the station along the scallop line. Note the last station
-  //                    includes the overhang while the others are just the width of one side of the manifold
+  // strawStationWidth - Width of the station along the scallop line.
+  // strawStationManifoldWidth - Thickness of the manifold. The manifold is thinner than
+  //                             the stations and this must be accounted for 
+  // strawStationSpacing - how much space is withing the stations 
   // strawStationHeight - Full height of the station
-  
+  // strawStationManifoldHeight - height of the manifolds
+  // strawStationManifoldThickness - thickness of the manifold walls
+  //
+  //---------VARIABLES FOR THE STRAWS-------------------------//
+  // strawLayers - For testing made it possible to easily change from doublets to triplets  
+
+  // The following two variables are pulled off the design in SolidWorks. See gm2ringsim documentation
+  // for an explanation of where they are pulled from 
+  // xPositionStraw0 - position of the first straw in each row in the "x" coordinate of the station
+  // yPosition:@local - position of the first start in each row in the "y" coorindate of the station
   //////////////////////////////////////////////////////
   
   strawStationSize:@local::strawStationSize
   strawStationType:@local::strawStationType
   strawStationWidth:@local::strawStationWidth
   strawStationManifoldWidth:@local::strawStationManifoldWidth
-  strawStationSpacing:@local::strawStationSpacing
   strawStationHeight:@local::strawStationHeight
   strawStationManifoldHeight:@local::strawStationManifoldHeight
   strawStationManifoldThickness:@local::strawStationManifoldThickness
@@ -58,8 +66,6 @@ strawtracker_geom : {
   
   supportPostRadius: 3.5 //mm
   supportPostYPosition: 52.52 //mm  
-
-
 
   //Display settings for the trackers
   displayStation: true 

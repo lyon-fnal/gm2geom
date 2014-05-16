@@ -36,7 +36,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawStationManifoldThickness( p.get<double>("strawStationManifoldThickness")),
   strawStationWidth( p.get<double>("strawStationWidth")),
   strawStationManifoldWidth( p.get<double>("strawStationManifoldWidth")),
-  strawStationSpacing( p.get<double>("strawStationSpacing") *in),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
@@ -62,7 +61,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
 {
   
-  // A couple of derived quantities
   // Half-sizes of the edges of the stations, necessary for Geant4 building.
   strawStationHeightHalf = strawStationHeight/2;
   strawStationWidthHalf = strawStationWidth/2;
@@ -79,7 +77,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 
   const gm2geom::VacGeometry vacg("vac");
   double distToNextStation;
-
+  strawStationSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawStationType.size()*strawStationWidth)/(strawStationType.size()-1);
   //set the half size of the station and determine where the center
   //of each station is positioned in the x coordinate system (of the tracker)
  
@@ -91,22 +89,23 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 
   }
 
-  //The location is set by the first element in the vector being the station closest to the 
-  //calorimeter. In actuality we want this to be the last station and thus the order
-  //of the vector needs to be reversed to take this into account. 
+  //The vector 'strawStationLocation' above is set by the first element in the vector 
+  //being the station closest to the calorimeter. In actuality we want this to be the 
+  //last station and thus the order of the vector needs to be reversed to take this 
+  //into account. 
+
   std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
   
-  // Get total offset in tracker x coordinate.
+  // Get total offset from the original inner scallop vacuum line (not at the extension)
+  // this is used for placement of the box and will become the tracker x coordinates.
+  // In the tracker coodinates z is along original scallop line, 
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
     distShift.push_back(vacg.trackerExtensionW + vacg.outerWallThickness -  strawStationSizeHalf[i]);
-
   }
   
-  
-  // Get the station y coordinate for each layer.
+  // Get the station y coordinate for each layer
   for (unsigned int i = 0; i<yPosition.size(); i++){
-//    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf[strawStationWidthHalf.size()-1]);
-    yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf);
+    //yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf);
     yPosition[i] = yPosition[i] - strawStationWidthHalf;
   }
   
@@ -151,10 +150,9 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
 // station (Geant4) coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   
-  
   int innerPlaneNumber = Plane(wire);
-  // It's pretty easy; we just need the 'y' position of the layer.
 
+  // It's pretty easy; we just need the 'y' position of the layer.
   return yPosition[innerPlaneNumber];
 }
 

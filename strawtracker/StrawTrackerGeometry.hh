@@ -61,8 +61,7 @@ namespace gm2geom {
 		const double strawStationManifoldThickness;
     const double strawStationWidth;
     double strawStationManifoldWidth;
-    const double strawStationSpacing;
-    //const double strawManifoldThickness;    
+    double strawStationSpacing;
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
@@ -79,7 +78,7 @@ namespace gm2geom {
 
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
-    std::vector<double> yPositionLastStation;    
+
     // Display parameters
     const bool displayStation;
     std::vector<double> stationColor;
