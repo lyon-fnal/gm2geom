@@ -52,8 +52,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   stationColor( p.get<std::vector<double>>("stationColor")),
   manifoldColor( p.get<std::vector<double>>("manifoldColor")),
   displayStationMaterial( p.get<bool>("displayStationMaterial")),
-  displayPipingMaterial( p.get<bool>("displayPipingMaterial")),
-  pipingColor( p.get<std::vector<double>>("pipingColor")),
   displayStraw( p.get<bool>("displayStraw")),
   strawColor( p.get<std::vector<double>>("strawColor")),
   gasColor( p.get<std::vector<double>>("gasColor")),
@@ -111,13 +109,17 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
   numberOfStations = strawStationSize.size() * whichScallopLocations.size();
-  numberOfPlanesPerScallop = strawStationSize.size()*(strawView*strawLayers);
+  numberOfPlanesPerScallop = strawStationSize.size()*strawView;
 }
 
 // Calculate the  plane number of a wire within a station. Does not use the wire# itself,
 // just the station, view, and layer.
-int gm2geom::StrawTrackerGeometry::Plane(WireID wire) const {
+int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
   return wire.getLayer() + wire.getView()*strawLayers; 
+}
+
+int gm2geom::StrawTrackerGeometry::TotalPlane(WireID wire) const {
+  return wire.getStation()*strawView + wire.getView();
 }
 
 int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
@@ -129,7 +131,7 @@ int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
 // coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   
-  int innerPlaneNumber = Plane(wire);
+  int innerPlaneNumber = InnerRow(wire);
 
   // Get the x position of the bottom of the wire
   double x =  xPositionStraw0[innerPlaneNumber] + wire.getWire()*distBtwnWires;
@@ -150,7 +152,7 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
 // station (Geant4) coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   
-  int innerPlaneNumber = Plane(wire);
+  int innerPlaneNumber = InnerRow(wire);
 
   // It's pretty easy; we just need the 'y' position of the layer.
   return yPosition[innerPlaneNumber];

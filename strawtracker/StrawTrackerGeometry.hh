@@ -27,8 +27,9 @@ namespace gm2geom {
     // Calculate the plane number of the straw in question: the first plane is
     // the one furthest upstream in the upstream-most station, and the last is
     // the plane closest to the calorimeter station.
-    int Plane(WireID wire) const;
-
+    int TotalPlane(WireID wire) const;
+    // Calculate the row number of the wire within a station
+    int InnerRow(WireID wire) const;
     //Calculate the Total station number given a WireID. This is needed
     //for placing the straws within the stations
     int TotalStationNumber(WireID wire) const;
@@ -84,8 +85,6 @@ namespace gm2geom {
     std::vector<double> stationColor;
 		std::vector<double> manifoldColor;
     const bool displayStationMaterial;
-    const bool displayPipingMaterial;
-		std::vector<double> pipingColor;
     const bool displayStraw;
     std::vector<double> strawColor;
     std::vector<double> gasColor;
