@@ -59,11 +59,8 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
 {
   
-  // Half-sizes of the edges of the stations, necessary for Geant4 building.
   strawStationHeightHalf = strawStationHeight/2;
   strawStationWidthHalf = strawStationWidth/2;
-  
-  //Half sizes of the manifolds
   strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
   strawStationManifoldWidthHalf = strawStationManifoldWidth/2;
 
@@ -76,7 +73,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   const gm2geom::VacGeometry vacg("vac");
   double distToNextStation;
   strawStationSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawStationType.size()*strawStationWidth)/(strawStationType.size()-1);
-  //set the half size of the station and determine where the center
+  //Set the half size of the station and determine where the center
   //of each station is positioned in the x coordinate system (of the tracker)
  
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
@@ -103,7 +100,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   // Get the station y coordinate for each layer
   for (unsigned int i = 0; i<yPosition.size(); i++){
-    //yPositionLastStation.push_back(yPosition[i] - strawStationWidthHalf);
     yPosition[i] = yPosition[i] - strawStationWidthHalf;
   }
   
@@ -112,8 +108,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   numberOfPlanesPerScallop = strawStationSize.size()*strawView;
 }
 
-// Calculate the  plane number of a wire within a station. Does not use the wire# itself,
-// just the station, view, and layer.
 int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
   return wire.getLayer() + wire.getView()*strawLayers; 
 }
@@ -127,8 +121,6 @@ int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
  return wire.getStation() + pos*strawStationLocation.size();
   
 }
-// Calculate the position of the center of the wire in question in station
-// coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   
   int innerPlaneNumber = InnerRow(wire);
@@ -148,8 +140,6 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   return x;
 }
 
-// Calculate the y coordinate of the center of the relevant wire in question in
-// station (Geant4) coordinates, with y downstream, x outward, and z downwards.
 double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
   
   int innerPlaneNumber = InnerRow(wire);

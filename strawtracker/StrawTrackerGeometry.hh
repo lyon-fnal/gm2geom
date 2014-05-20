@@ -28,6 +28,7 @@ namespace gm2geom {
     // the one furthest upstream in the upstream-most station, and the last is
     // the plane closest to the calorimeter station.
     int TotalPlane(WireID wire) const;
+
     // Calculate the row number of the wire within a station
     int InnerRow(WireID wire) const;
     //Calculate the Total station number given a WireID. This is needed
@@ -35,6 +36,8 @@ namespace gm2geom {
     int TotalStationNumber(WireID wire) const;
     // Get the position (in x and y) of the center of a given wire in the
     // station coordinates.
+    // Get the position in x and y of the center of a given wire in the station 
+    // coordinates, with y downstream, x outward, and z downwards.
     double wireXPosition(WireID wire) const;
     double wireYPosition(WireID wire) const;
 
