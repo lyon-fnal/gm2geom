@@ -92,8 +92,6 @@ namespace gm2geom {
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
-    // height of active region, *not* the length of the straw, determined 
-    // from the height of the station - 2 times the height of the manifold
     std::vector<double> strawStationLocation;
     double strawStationSpacing;
     // Half-lengths of the straw stations, required for Geant.
@@ -103,14 +101,16 @@ namespace gm2geom {
     double strawStationManifoldHeightHalf;
     double strawStationManifoldWidthHalf;
     double strawStationWidthHalf;
-
     std::vector<double> strawStationSizeHalf;
+    std::vector<double> distShift;
+
     // The total number of stations to be placed (counting multiple scallop
     // locations)
     int numberOfStations;
 
+    // height of active region, *not* the length of the straw, determined 
+    // from the height of the station - 2 times the height of the manifold
     double heightOfTheStraw; 
-    std::vector<double> distShift;
     
     // The total number of planes per tracker system
     int numberOfPlanesPerScallop;
