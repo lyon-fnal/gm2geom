@@ -72,15 +72,18 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
 
   const gm2geom::VacGeometry vacg("vac");
   double distToNextStation;
+  double distToExtFront = vacg.distToExtEdge - vacg.trackerExtensionL;
+ 
   strawStationSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawStationType.size()*strawStationWidth)/(strawStationType.size()-1);
   //Set the half size of the station and determine where the center
+
   //of each station is positioned in the x coordinate system (of the tracker)
- 
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
 
     strawStationSizeHalf.push_back(strawStationSize[i]/2);
+
     distToNextStation = strawStationWidthHalf + i*(strawStationWidth + strawStationSpacing);
-    strawStationLocation.push_back( vacg.distToExtEdge -vacg.trackerExtWallThick-distToNextStation);
+    strawStationLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextStation);
 
   }
 
@@ -89,7 +92,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   //last station and thus the order of the vector needs to be reversed to take this 
   //into account. 
 
-  std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
+//  std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
   
   // Get total offset from the original inner scallop vacuum line (not at the extension)
   // this is used for placement of the box and will become the tracker x coordinates.
