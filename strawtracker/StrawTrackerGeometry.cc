@@ -98,7 +98,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   // this is used for placement of the box and will become the tracker x coordinates.
   // In the tracker coodinates z is along original scallop line, 
   for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    distShift.push_back(vacg.trackerExtensionW + vacg.outerWallThickness +vacg.trackerExtWallThick - strawStationSizeHalf[i]);
+    distShift.push_back(vacg.outerWallThickness + vacg.trackerExtensionW + vacg.trackerExtWallThick - strawStationSizeHalf[i]);
   }
   
   // Get the station y coordinate for each layer
