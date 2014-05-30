@@ -19,15 +19,15 @@ strawtracker_geom : {
   /////////////////////////////////////////////////////
   //
   //----------VARIABLES FOR THE STATION/MANIFOLD DESIGN------------//
-  // strawStationsSize - Radial size of the stations
-  // strawStationType - How many straws are in each layer (multiple of 8!)
-  // strawStationWidth - Width of the station along the scallop line.
-  // strawStationManifoldWidth - Thickness of the manifold. The manifold is thinner than
+  // strawModuleSize - Radial size of the stations
+  // strawModuleType - How many straws are in each layer (multiple of 8!)
+  // strawModuleWidth - Width of the station along the scallop line.
+  // strawModuleManifoldWidth - Thickness of the manifold. The manifold is thinner than
   //                             the stations and this must be accounted for 
-  // strawStationSpacing - how much space is withing the stations 
-  // strawStationHeight - Full height of the station
-  // strawStationManifoldHeight - height of the manifolds
-  // strawStationManifoldThickness - thickness of the manifold walls
+  // strawModuleSpacing - how much space is withing the stations 
+  // strawModuleHeight - Full height of the station
+  // strawModuleManifoldHeight - height of the manifolds
+  // strawModuleManifoldThickness - thickness of the manifold walls
   //
   //---------VARIABLES FOR THE STRAWS-------------------------//
   // strawLayers - For testing made it possible to easily change from doublets to triplets  
@@ -38,13 +38,13 @@ strawtracker_geom : {
   // yPosition:@local - position of the first start in each row in the "y" coorindate of the station
   //////////////////////////////////////////////////////
   
-  strawStationSize:@local::strawStationSize
-  strawStationType:@local::strawStationType
-  strawStationWidth:@local::strawStationWidth
-  strawStationManifoldWidth:@local::strawStationManifoldWidth
-  strawStationHeight:@local::strawStationHeight
-  strawStationManifoldHeight:@local::strawStationManifoldHeight
-  strawStationManifoldThickness:@local::strawStationManifoldThickness
+  strawModuleSize:@local::strawModuleSize
+  strawModuleType:@local::strawModuleType
+  strawModuleWidth:@local::strawModuleWidth
+  strawModuleManifoldWidth:@local::strawModuleManifoldWidth
+  strawModuleHeight:@local::strawModuleHeight
+  strawModuleManifoldHeight:@local::strawModuleManifoldHeight
+  strawModuleManifoldThickness:@local::strawModuleManifoldThickness
   strawLayers:@local::strawLayers	  
   xPositionStraw0:@local::xPositionStraw0
   yPosition:@local::yPosition
@@ -68,13 +68,11 @@ strawtracker_geom : {
   supportPostYPosition: 52.52 //mm  
 
   //Display settings for the trackers
-  displayStation: true 
-  stationColor: [0.2, 0.6, 1.0, 1.0] //blue
+  displayModule: true
+  moduleColor: [0.2, 0.6, 1.0, 1.0] //blue
   manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
-  displayStationMaterial: false
+  displayModuleMaterial: false
 
-  displayPipingMaterial: false
-  pipingColor: [0.2, 0.6, 1.0, 1.0]
   displayStraw: true 
   strawColor: [0.9, 0.8, 0.2, 1.0]
   gasColor: [1.0, 0.0, 0.0, 1.0]

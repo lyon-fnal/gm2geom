@@ -27,13 +27,13 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   GeometryBase(detName),
     // Extract FHiCL parameters.
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
-  strawStationSize( p.get<std::vector<double>>("strawStationSize")),
-  strawStationType( p.get<std::vector<int>>("strawStationType")),
-  strawStationWidth( p.get<double>("strawStationWidth")),
-  strawStationManifoldWidth( p.get<double>("strawStationManifoldWidth")),
-  strawStationHeight( p.get<double>("strawStationHeight")),
-  strawStationManifoldHeight( p.get<double>("strawStationManifoldHeight")),
-  strawStationManifoldThickness( p.get<double>("strawStationManifoldThickness")),
+  strawModuleSize( p.get<std::vector<double>>("strawModuleSize")),
+  strawModuleType( p.get<std::vector<int>>("strawModuleType")),
+  strawModuleWidth( p.get<double>("strawModuleWidth")),
+  strawModuleManifoldWidth( p.get<double>("strawModuleManifoldWidth")),
+  strawModuleHeight( p.get<double>("strawModuleHeight")),
+  strawModuleManifoldHeight( p.get<double>("strawModuleManifoldHeight")),
+  strawModuleManifoldThickness( p.get<double>("strawModuleManifoldThickness")),
   strawLayers( p.get<double>("strawLayers")),
   xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
   yPosition( p.get<std::vector<double>>("yPosition")),
@@ -48,10 +48,10 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   layerAngle( p.get<double>("layerAngle") *deg),
   supportPostRadius( p.get<double>("supportPostRadius") ),
   supportPostYPosition( p.get<double>("supportPostYPosition") ),
-  displayStation( p.get<bool>("displayStation")),
-  stationColor( p.get<std::vector<double>>("stationColor")),
+  displayModule( p.get<bool>("displayModule")),
+  moduleColor( p.get<std::vector<double>>("moduleColor")),
   manifoldColor( p.get<std::vector<double>>("manifoldColor")),
-  displayStationMaterial( p.get<bool>("displayStationMaterial")),
+  displayModuleMaterial( p.get<bool>("displayModuleMaterial")),
   displayStraw( p.get<bool>("displayStraw")),
   strawColor( p.get<std::vector<double>>("strawColor")),
   gasColor( p.get<std::vector<double>>("gasColor")),
@@ -59,56 +59,56 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
 {
   
-  strawStationHeightHalf = strawStationHeight/2;
-  strawStationWidthHalf = strawStationWidth/2;
-  strawStationManifoldHeightHalf = strawStationManifoldHeight/2;
-  strawStationManifoldWidthHalf = strawStationManifoldWidth/2;
+  strawModuleHeightHalf = strawModuleHeight/2;
+  strawModuleWidthHalf = strawModuleWidth/2;
+  strawModuleManifoldHeightHalf = strawModuleManifoldHeight/2;
+  strawModuleManifoldWidthHalf = strawModuleManifoldWidth/2;
 
-  //Calculate the straw parameters based on the size of the station and manifolds
-  heightOfTheStraw = strawStationHeight - 2*strawStationManifoldHeight;
+  //Calculate the straw parameters based on the size of the module and manifolds
+  heightOfTheStraw = strawModuleHeight - 2*strawModuleManifoldHeight;
   lengthOfTheStraw = heightOfTheStraw/cos(layerAngle);
   halfLengthOfTheStraw = lengthOfTheStraw/2;
   halfHeightOfTheStraw = heightOfTheStraw/2;
 
   const gm2geom::VacGeometry vacg("vac");
-  double distToNextStation;
+  double distToNextModule;
   double distToExtFront = vacg.distToExtEdge - vacg.trackerExtensionL;
  
-  strawStationSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawStationType.size()*strawStationWidth)/(strawStationType.size()-1);
-  //Set the half size of the station and determine where the center
+  strawModuleSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawModuleType.size()*strawModuleWidth)/(strawModuleType.size()-1);
+  //Set the half size of the module and determine where the center
 
-  //of each station is positioned in the x coordinate system (of the tracker)
-  for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
+  //of each module is positioned in the x coordinate system (of the tracker)
+  for (unsigned int i = 0 ; i < strawModuleSize.size() ; i ++){
 
-    strawStationSizeHalf.push_back(strawStationSize[i]/2);
+    strawModuleSizeHalf.push_back(strawModuleSize[i]/2);
 
-    distToNextStation = strawStationWidthHalf + i*(strawStationWidth + strawStationSpacing);
-    strawStationLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextStation);
+    distToNextModule = strawModuleWidthHalf + i*(strawModuleWidth + strawModuleSpacing);
+    strawModuleLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextModule);
 
   }
 
-  //The vector 'strawStationLocation' above is set by the first element in the vector 
-  //being the station closest to the calorimeter. In actuality we want this to be the 
-  //last station and thus the order of the vector needs to be reversed to take this 
+  //The vector 'strawModuleLocation' above is set by the first element in the vector 
+  //being the module closest to the calorimeter. In actuality we want this to be the 
+  //last module and thus the order of the vector needs to be reversed to take this 
   //into account. 
 
-//  std::reverse(strawStationLocation.begin(), strawStationLocation.end());  
+//  std::reverse(strawModuleLocation.begin(), strawModuleLocation.end());  
   
   // Get total offset from the original inner scallop vacuum line (not at the extension)
   // this is used for placement of the box and will become the tracker x coordinates.
   // In the tracker coodinates z is along original scallop line, 
-  for (unsigned int i = 0 ; i < strawStationSize.size() ; i ++){
-    distShift.push_back(vacg.outerWallThickness + vacg.trackerExtensionW + vacg.trackerExtWallThick - strawStationSizeHalf[i]);
+  for (unsigned int i = 0 ; i < strawModuleSize.size() ; i ++){
+    distShift.push_back(vacg.outerWallThickness + vacg.trackerExtensionW + vacg.trackerExtWallThick - strawModuleSizeHalf[i]);
   }
   
-  // Get the station y coordinate for each layer
+  // Get the module y coordinate for each layer
   for (unsigned int i = 0; i<yPosition.size(); i++){
-    yPosition[i] = yPosition[i] - strawStationWidthHalf;
+    yPosition[i] = yPosition[i] - strawModuleWidthHalf;
   }
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
-  numberOfStations = strawStationSize.size() * whichScallopLocations.size();
-  numberOfPlanesPerScallop = strawStationSize.size()*strawView;
+  numberOfModules = strawModuleSize.size() * whichScallopLocations.size();
+  numberOfPlanesPerScallop = strawModuleSize.size()*strawView;
 }
 
 int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
@@ -116,12 +116,12 @@ int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
 }
 
 int gm2geom::StrawTrackerGeometry::TotalPlane(WireID wire) const {
-  return wire.getStation()*strawView + wire.getView();
+  return wire.getModule()*strawView + wire.getView();
 }
 
-int gm2geom::StrawTrackerGeometry::TotalStationNumber(WireID wire) const {
+int gm2geom::StrawTrackerGeometry::TotalModuleNumber(WireID wire) const {
   int pos = std::find(whichScallopLocations.begin(), whichScallopLocations.end(), wire.getTrackerNumber()) - whichScallopLocations.begin();
- return wire.getStation() + pos*strawStationLocation.size();
+ return wire.getModule() + pos*strawModuleLocation.size();
   
 }
 double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
@@ -158,14 +158,14 @@ double gm2geom::StrawTrackerGeometry::wireYPosition(WireID wire) const {
 // zero in the median plane).
 CLHEP::Hep3Vector gm2geom::StrawTrackerGeometry::
 trackerPosition(WireID const& wire) const{
-  // Get station position, and add in offsets for x.
+  // Get module position, and add in offsets for x.
   double x = wireXPosition(wire);
   // This is the center of the wire, so by definition it has y=0.
   double y = 0;
-  // Get station position and add in the location of the station for z
-  // We add wireYPosition because the tracker z is the station y, up to a
+  // Get module position and add in the location of the module for z
+  // We add wireYPosition because the tracker z is the module y, up to a
   // constant offset.
-  double z = wireYPosition(wire) + strawStationLocation[wire.getStation()];
+  double z = wireYPosition(wire) + strawModuleLocation[wire.getModule()];
   // combine these components and return the resulting vector.
   CLHEP::Hep3Vector trackerPosition(x,y,z);
   return trackerPosition;
@@ -196,9 +196,9 @@ trackerPositionAtHeight(WireID const& wire, double y) const
 void gm2geom::StrawTrackerGeometry::print() const{
   std::ostringstream oss;
   
-  oss << "  strawStationHeight="<< strawStationHeight << "\n";
-  oss << "  strawStationSize="; for (auto entry: strawStationSize) { oss << " " << entry; }; oss<< "\n";
-  oss << "  strawStationLocations="; for (auto entry : strawStationLocation) { oss << " " << entry; }; oss << "\n";
+  oss << "  strawModuleHeight="<< strawModuleHeight << "\n";
+  oss << "  strawModuleSize="; for (auto entry: strawModuleSize) { oss << " " << entry; }; oss<< "\n";
+  oss << "  strawModuleLocations="; for (auto entry : strawModuleLocation) { oss << " " << entry; }; oss << "\n";
   oss << "  whichScallopLocations="; for (auto entry : whichScallopLocations) { oss << " " << entry; }; oss << "\n";
   oss << "  lengthOfStraw=" <<lengthOfTheStraw << "\n";
   oss << "  heightOfStraw=" <<heightOfTheStraw << "\n";

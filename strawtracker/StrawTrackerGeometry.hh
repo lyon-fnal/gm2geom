@@ -1,7 +1,7 @@
 // This geometry class, derived from gm2geom's GeometryBase, is used to extract
 // information from a configuration file and can then be called to retrieve that
 // information. In particular, it holds configuration parameters for the
-// placement of the straw stations and straws, and provides methods to get
+// placement of the straw modules and straws, and provides methods to get
 // things like the coordinates of the center of each straw in the tracker
 // coordinate system.
 
@@ -25,17 +25,17 @@ namespace gm2geom {
     void print() const;
     
     // Calculate the plane number of the straw in question: the first plane is
-    // the one furthest upstream in the upstream-most station, and the last is
-    // the plane closest to the calorimeter station.
+    // the one furthest upstream in the upstream-most module, and the last is
+    // the plane closest to the calorimeter module.
     int TotalPlane(WireID wire) const;
 
-    // Calculate the row number of the wire within a station
+    // Calculate the row number of the wire within a module
     int InnerRow(WireID wire) const;
-    //Calculate the Total station number given a WireID. This is needed
-    //for placing the straws within the stations
-    int TotalStationNumber(WireID wire) const;
+    //Calculate the Total module number given a WireID. This is needed
+    //for placing the straws within the modules
+    int TotalModuleNumber(WireID wire) const;
 
-    // Get the position in x and y of the center of a given wire in the station 
+    // Get the position in x and y of the center of a given wire in the module 
     // coordinates, with y downstream, x outward, and z downwards.
     double wireXPosition(WireID wire) const;
     double wireYPosition(WireID wire) const;
@@ -53,13 +53,13 @@ namespace gm2geom {
     // ----------------------------------------------------------------------
     // Station parameters
     std::vector<int> whichScallopLocations;
-    std::vector<double> strawStationSize;
-    std::vector<int> strawStationType;
-    const double strawStationWidth;
-    double strawStationManifoldWidth;
-    const double strawStationHeight;
-    const double strawStationManifoldHeight;
-		const double strawStationManifoldThickness;
+    std::vector<double> strawModuleSize;
+    std::vector<int> strawModuleType;
+    const double strawModuleWidth;
+    double strawModuleManifoldWidth;
+    const double strawModuleHeight;
+    const double strawModuleManifoldHeight;
+		const double strawModuleManifoldThickness;
     int strawLayers;
     std::vector<double> xPositionStraw0;
     std::vector<double> yPosition;
@@ -81,10 +81,10 @@ namespace gm2geom {
 
 
     // Display parameters
-    const bool displayStation;
-    std::vector<double> stationColor;
+    const bool displayModule;
+    std::vector<double> moduleColor;
 		std::vector<double> manifoldColor;
-    const bool displayStationMaterial;
+    const bool displayModuleMaterial;
     const bool displayStraw;
     std::vector<double> strawColor;
     std::vector<double> gasColor;
@@ -92,24 +92,24 @@ namespace gm2geom {
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
-    std::vector<double> strawStationLocation;
-    double strawStationSpacing;
-    // Half-lengths of the straw stations, required for Geant.
+    std::vector<double> strawModuleLocation;
+    double strawModuleSpacing;
+    // Half-lengths of the straw modules, required for Geant.
     // The distance (x, in tracker coordinates) from the flat edge of the
-    // scallop to the straw station center.
-    double strawStationHeightHalf;
-    double strawStationManifoldHeightHalf;
-    double strawStationManifoldWidthHalf;
-    double strawStationWidthHalf;
-    std::vector<double> strawStationSizeHalf;
+    // scallop to the straw module center.
+    double strawModuleHeightHalf;
+    double strawModuleManifoldHeightHalf;
+    double strawModuleManifoldWidthHalf;
+    double strawModuleWidthHalf;
+    std::vector<double> strawModuleSizeHalf;
     std::vector<double> distShift;
 
-    // The total number of stations to be placed (counting multiple scallop
+    // The total number of modules to be placed (counting multiple scallop
     // locations)
-    int numberOfStations;
+    int numberOfModules;
 
     // height of active region, *not* the length of the straw, determined 
-    // from the height of the station - 2 times the height of the manifold
+    // from the height of the module - 2 times the height of the manifold
     double heightOfTheStraw; 
     
     // The total number of planes per tracker system
@@ -121,7 +121,7 @@ namespace gm2geom {
     double halfHeightOfTheStraw;
     double halfLengthOfTheStraw;
     // The amount of translation in x necessary to get from the bottom of the
-    // station to the center of the straw.
+    // module to the center of the straw.
     double deltaX;
   };
 
