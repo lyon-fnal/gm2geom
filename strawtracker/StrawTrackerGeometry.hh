@@ -53,7 +53,6 @@ namespace gm2geom {
     // ----------------------------------------------------------------------
     // Station parameters
     std::vector<int> whichScallopLocations;
-    std::vector<double> strawModuleSize;
     std::vector<int> strawModuleType;
     const double strawModuleWidth;
     double strawModuleManifoldWidth;
@@ -65,6 +64,9 @@ namespace gm2geom {
     std::vector<double> yPosition;
 
     int strawView;
+    double type16size;
+    double type24size;
+    double type32size;
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
@@ -92,6 +94,7 @@ namespace gm2geom {
 
     // Derived parameters - these aren't directly from the config file
     // ----------------------------------------------------------------------
+    
     std::vector<double> strawModuleLocation;
     double strawModuleSpacing;
     // Half-lengths of the straw modules, required for Geant.

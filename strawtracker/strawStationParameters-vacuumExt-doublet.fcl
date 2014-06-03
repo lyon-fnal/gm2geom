@@ -1,6 +1,6 @@
 BEGIN_PROLOG
 
-strawModuleSize: [213.02,213.02,256.51,256.51,256.51,300.0,300.0,300.0,300.0]
+//strawModuleSize: [213.02,213.02,256.51,256.51,256.51,300.0,300.0,300.0,300.0]
 strawModuleType: [16,16,24,24,24,32,32,32,32]
 strawModuleWidth: 110
 strawModuleManifoldWidth: 70.32

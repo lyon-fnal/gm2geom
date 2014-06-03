@@ -27,7 +27,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   GeometryBase(detName),
     // Extract FHiCL parameters.
   whichScallopLocations( p.get<std::vector<int>>("whichScallopLocations")),
-  strawModuleSize( p.get<std::vector<double>>("strawModuleSize")),
+  //strawModuleSize( p.get<std::vector<double>>("strawModuleSize")),
   strawModuleType( p.get<std::vector<int>>("strawModuleType")),
   strawModuleWidth( p.get<double>("strawModuleWidth")),
   strawModuleManifoldWidth( p.get<double>("strawModuleManifoldWidth")),
@@ -37,7 +37,10 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawLayers( p.get<double>("strawLayers")),
   xPositionStraw0( p.get<std::vector<double>>("xPositionStraw0")),
   yPosition( p.get<std::vector<double>>("yPosition")),
-  strawView( p.get<double>("strawView")),
+  strawView( p.get<int>("strawView")),
+  type16size( p.get<double>("type16size")),
+  type24size( p.get<double>("type24size")),
+  type32size( p.get<double>("type32size")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
@@ -75,29 +78,25 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   double distToExtFront = vacg.distToExtEdge - vacg.trackerExtensionL;
  
   strawModuleSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawModuleType.size()*strawModuleWidth)/(strawModuleType.size()-1);
-  //Set the half size of the module and determine where the center
 
-  //of each module is positioned in the x coordinate system (of the tracker)
-  for (unsigned int i = 0 ; i < strawModuleSize.size() ; i ++){
+  std::map<int,double> strawModuleTypeSize;
 
-    strawModuleSizeHalf.push_back(strawModuleSize[i]/2);
+  strawModuleTypeSize[16] = type16size;
+  strawModuleTypeSize[24] = type24size;
+  strawModuleTypeSize[32] = type32size;
+  
+  for (unsigned int i = 0 ; i < strawModuleType.size() ; i ++){
 
+    strawModuleSizeHalf.push_back(strawModuleTypeSize[strawModuleType[i]]/2); 
     distToNextModule = strawModuleWidthHalf + i*(strawModuleWidth + strawModuleSpacing);
     strawModuleLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextModule);
 
   }
-
-  //The vector 'strawModuleLocation' above is set by the first element in the vector 
-  //being the module closest to the calorimeter. In actuality we want this to be the 
-  //last module and thus the order of the vector needs to be reversed to take this 
-  //into account. 
-
-//  std::reverse(strawModuleLocation.begin(), strawModuleLocation.end());  
   
   // Get total offset from the original inner scallop vacuum line (not at the extension)
   // this is used for placement of the box and will become the tracker x coordinates.
   // In the tracker coodinates z is along original scallop line, 
-  for (unsigned int i = 0 ; i < strawModuleSize.size() ; i ++){
+  for (unsigned int i = 0 ; i < strawModuleType.size() ; i ++){
     distShift.push_back(vacg.outerWallThickness + vacg.trackerExtensionW + vacg.trackerExtWallThick - strawModuleSizeHalf[i]);
   }
   
@@ -107,8 +106,8 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   }
   
   deltaX = halfHeightOfTheStraw*tan(layerAngle);
-  numberOfModules = strawModuleSize.size() * whichScallopLocations.size();
-  numberOfPlanesPerScallop = strawModuleSize.size()*strawView;
+  numberOfModules = strawModuleType.size() * whichScallopLocations.size();
+  numberOfPlanesPerScallop = strawModuleType.size()*strawView;
 }
 
 int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
@@ -197,7 +196,7 @@ void gm2geom::StrawTrackerGeometry::print() const{
   std::ostringstream oss;
   
   oss << "  strawModuleHeight="<< strawModuleHeight << "\n";
-  oss << "  strawModuleSize="; for (auto entry: strawModuleSize) { oss << " " << entry; }; oss<< "\n";
+  oss << "  strawModuleType="; for (auto entry: strawModuleType) { oss << " " << entry; }; oss<< "\n";
   oss << "  strawModuleLocations="; for (auto entry : strawModuleLocation) { oss << " " << entry; }; oss << "\n";
   oss << "  whichScallopLocations="; for (auto entry : whichScallopLocations) { oss << " " << entry; }; oss << "\n";
   oss << "  lengthOfStraw=" <<lengthOfTheStraw << "\n";

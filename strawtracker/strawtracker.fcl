@@ -19,7 +19,6 @@ strawtracker_geom : {
   /////////////////////////////////////////////////////
   //
   //----------VARIABLES FOR THE STATION/MANIFOLD DESIGN------------//
-  // strawModuleSize - Radial size of the stations
   // strawModuleType - How many straws are in each layer (multiple of 8!)
   // strawModuleWidth - Width of the station along the scallop line.
   // strawModuleManifoldWidth - Thickness of the manifold. The manifold is thinner than
@@ -38,7 +37,6 @@ strawtracker_geom : {
   // yPosition:@local - position of the first start in each row in the "y" coorindate of the station
   //////////////////////////////////////////////////////
   
-  strawModuleSize:@local::strawModuleSize
   strawModuleType:@local::strawModuleType
   strawModuleWidth:@local::strawModuleWidth
   strawModuleManifoldWidth:@local::strawModuleManifoldWidth
@@ -51,7 +49,11 @@ strawtracker_geom : {
 
   //How many views and how many layers within each view
   strawView: 2
-  
+
+  type16size: 213.02
+  type24size: 256.51
+  type32size: 300.0
+
   //note that the *length* and the height (active area) of the straw 
   //are  determined in the StrawTrackerGeometry File. 
   innerRadiusOfTheStraw:  0 //mm
