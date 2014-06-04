@@ -79,8 +79,6 @@ namespace gm2geom {
     double layerAngle;
     
     double supportPostRadius;
-    double supportPostYPosition;
-
 
     // Display parameters
     const bool displayModule;

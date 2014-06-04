@@ -50,7 +50,6 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   distBtwnWires( p.get<double>("distBtwnWires") *mm ),
   layerAngle( p.get<double>("layerAngle") *deg),
   supportPostRadius( p.get<double>("supportPostRadius") ),
-  supportPostYPosition( p.get<double>("supportPostYPosition") ),
   displayModule( p.get<bool>("displayModule")),
   moduleColor( p.get<std::vector<double>>("moduleColor")),
   manifoldColor( p.get<std::vector<double>>("manifoldColor")),
