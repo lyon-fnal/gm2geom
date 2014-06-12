@@ -94,7 +94,7 @@ namespace gm2geom {
     // ----------------------------------------------------------------------
     
     std::vector<double> strawModuleLocation;
-    double strawModuleSpacing;
+    double strawModuleSpacing = 0;
     // Half-lengths of the straw modules, required for Geant.
     // The distance (x, in tracker coordinates) from the flat edge of the
     // scallop to the straw module center.

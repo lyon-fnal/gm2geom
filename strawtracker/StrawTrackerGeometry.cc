@@ -76,7 +76,14 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   double distToNextModule;
   double distToExtFront = vacg.distToExtEdge - vacg.trackerExtensionL;
  
-  strawModuleSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawModuleType.size()*strawModuleWidth)/(strawModuleType.size()-1);
+  if(strawModuleType.size() != 1) {
+    strawModuleSpacing = (2*vacg.trackerExtBuildL[vacg.vacuumRegion] - strawModuleType.size()*strawModuleWidth)/(strawModuleType.size()-1);
+  } 
+
+  if(strawModuleSpacing <0 ){
+    throw cet::exception("StrawTrackerGeometry")<<
+    "The width of the vacuum extension is too small for the width of the modules.\nPlease extend the vacuum extension, make the width of the modules smaller or lower the number of modules.\nFix before running again." << std::endl;
+  }
 
   std::map<int,double> strawModuleTypeSize;
 
