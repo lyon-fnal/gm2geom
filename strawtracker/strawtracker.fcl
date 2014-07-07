@@ -10,7 +10,7 @@ BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [0,12,18]
+  whichScallopLocations: [12]
 
   // Straw Station variable descriptions 
   // Defined in strawStationParameter file that 
@@ -44,16 +44,18 @@ strawtracker_geom : {
   strawModuleManifoldHeight:@local::strawModuleManifoldHeight
   strawModuleManifoldThickness:@local::strawModuleManifoldThickness
   strawLayers:@local::strawLayers	  
-  xPositionStraw0:@local::xPositionStraw0
+  xPositionStraw0_16type:@local::xPositionStraw0_16type
+  xPositionStraw0_24type:@local::xPositionStraw0_24type
+  xPositionStraw0_32type:@local::xPositionStraw0_32type
   yPosition:@local::yPosition
 
   //How many views
   strawView: 2
   
   //Sizes for different module types
-  type16size: 213.02
-  type24size: 256.51
-  type32size: 320.0
+  type16size: 192.00
+  type24size: 240.00
+  type32size: 288.00
 
   //note that the *length* and the height (active area) of the straw 
   //are  determined in the StrawTrackerGeometry File. 
@@ -73,7 +75,7 @@ strawtracker_geom : {
   displayModule: true
   moduleColor: [0.2, 0.6, 1.0, 1.0] //blue
   manifoldColor: [0.6, 0.6,0.6, 1.0] //gray
-  displayModuleMaterial: true
+  displayModuleMaterial: false
 
   displayStraw: true 
   strawColor: [0.9, 0.8, 0.2, 1.0]

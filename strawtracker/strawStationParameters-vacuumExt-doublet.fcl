@@ -14,6 +14,10 @@ strawLayers: 2
 //the corner which is closest to the scallop edge
 //and away from the calo. These measurements are taken off
 //3D-Models and are determined on the *bottom* manifold
+xPositionStraw0_16type: [69.27, 72.30, 84.15, 81.12]
+xPositionStraw0_24type: [68.86, 71.89, 83.73, 80.71]
+xPositionStraw0_32type: [68.45, 71.47, 83.32, 80.29]
+
 xPositionStraw0: [93.88,90.88, 79.14, 82.14]
-yPosition: [42.42, 47.18, 64.02, 68.78]
+yPosition: [44.33, 49.48, 64.48, 69.67]
 END_PROLOG
