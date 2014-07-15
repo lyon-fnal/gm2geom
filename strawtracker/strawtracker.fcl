@@ -68,9 +68,10 @@ strawtracker_geom : {
 
   distBtwnWires: 6.0 //mm
   layerAngle: 7.5 //deg
-  
-  supportPostRadius: 3.5 //mm
 
+  buildSupportPost: false
+  supportPostRadius: 3.5 //mm
+  
   //Display settings for the trackers
   displayModule: true
   moduleColor: [0.2, 0.6, 1.0, 1.0] //blue

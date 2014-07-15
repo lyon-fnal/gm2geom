@@ -80,6 +80,7 @@ namespace gm2geom {
     double distBtwnWires;
     double layerAngle;
     
+    const bool buildSupportPost;
     double supportPostRadius;
 
     // Display parameters

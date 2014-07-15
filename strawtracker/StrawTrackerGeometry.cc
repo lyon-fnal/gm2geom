@@ -51,6 +51,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   spanningAngleOfTheStraw( p.get<double>("spanningAngleOfTheStraw") *deg ),
   distBtwnWires( p.get<double>("distBtwnWires") *mm ),
   layerAngle( p.get<double>("layerAngle") *deg),
+  buildSupportPost( p.get<bool>("buildSupportPost")),
   supportPostRadius( p.get<double>("supportPostRadius") ),
   displayModule( p.get<bool>("displayModule")),
   moduleColor( p.get<std::vector<double>>("moduleColor")),
