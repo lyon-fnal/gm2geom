@@ -10,7 +10,7 @@ BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [12]
+  whichScallopLocations: [0,12,18]
 
   // Straw Station variable descriptions 
   // Defined in strawStationParameter file that 
