@@ -4,8 +4,8 @@ strawModuleType: [16,16,24,24,24,32,32,32,32]
 strawModuleWidth: 114
 strawModuleManifoldWidth: 72.37
 strawModuleHeight: 137
-strawModuleManifoldHeight: 23
-strawModuleManifoldThickness: 3.0
+strawModuleManifoldHeight: 20
+strawModuleManifoldThickness: 8.0
 
 strawLayers: 2
 
@@ -18,6 +18,5 @@ xPositionStraw0_16type: [59.27, 62.30, 74.15, 71.12]
 xPositionStraw0_24type: [58.86, 61.89, 73.73, 70.71]
 xPositionStraw0_32type: [58.45, 61.47, 73.32, 70.29]
 
-xPositionStraw0: [93.88,90.88, 79.14, 82.14]
 yPosition: [44.33, 49.48, 64.48, 69.67]
 END_PROLOG
