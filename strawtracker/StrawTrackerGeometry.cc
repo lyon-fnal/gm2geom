@@ -128,7 +128,7 @@ int gm2geom::StrawTrackerGeometry::TotalPlane(WireID wire) const {
 }
 
 int gm2geom::StrawTrackerGeometry::TotalModuleNumber(WireID wire) const {
-  int pos = std::find(whichScallopLocations.begin(), whichScallopLocations.end(), wire.getTrackerNumber()) - whichScallopLocations.begin();
+  int pos = std::find(whichScallopLocations.begin(), whichScallopLocations.end(), wire.getStation()) - whichScallopLocations.begin();
  return wire.getModule() + pos*strawModuleLocation.size();
   
 }
