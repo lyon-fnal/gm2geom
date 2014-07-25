@@ -39,6 +39,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   xPositionStraw0_24type( p.get<std::vector<double>>("xPositionStraw0_24type")),
   xPositionStraw0_32type( p.get<std::vector<double>>("xPositionStraw0_32type")),
   yPosition( p.get<std::vector<double>>("yPosition")),
+  strawModuleExtension( p.get<std::vector<double>>("strawModuleExtension")),
   strawView( p.get<int>("strawView")),
   type16size( p.get<double>("type16size")),
   type24size( p.get<double>("type24size")),
@@ -96,7 +97,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   
   for (unsigned int i = 0 ; i < strawModuleType.size() ; i ++){
 
-    strawModuleSizeHalf.push_back(strawModuleTypeSize[strawModuleType[i]]/2); 
+    strawModuleSizeHalf.push_back((strawModuleTypeSize[strawModuleType[i]]+strawModuleExtension[i])/2); 
     distToNextModule = strawModuleWidthHalf + i*(strawModuleWidth + strawModuleSpacing);
     strawModuleLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextModule);
 
@@ -137,12 +138,15 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   int innerPlaneNumber = InnerRow(wire);
   
   int type = strawModuleType[wire.getModule()];
+  int module = wire.getModule();
   double x=0;
   // Get the x position of the bottom of the first wire
   if (type == 16)  x =  xPositionStraw0_16type[innerPlaneNumber];
   if (type == 24)  x =  xPositionStraw0_24type[innerPlaneNumber];
   if (type == 32)  x =  xPositionStraw0_32type[innerPlaneNumber];
   
+  x = x + strawModuleExtension[module];
+
   //From this find the position of the bottom of the wire in question
   x =  x + wire.getWire()*distBtwnWires;
 

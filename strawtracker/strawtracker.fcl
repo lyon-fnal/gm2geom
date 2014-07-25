@@ -4,13 +4,13 @@
 
 //#include "geom/strawStationParameters-nopiping.fcl"
 //#include "geom/strawStationParameters.fcl"
-#include "geom/strawStationParameters-vacuumExt-doublet.fcl"
+#include "geom/strawStationParameters-vacuumExt-doublet-variablePlacement.fcl"
 
 BEGIN_PROLOG
 
 strawtracker_geom : {
 
-  whichScallopLocations: [0,12,18]
+  whichScallopLocations: [12,18]
 
   // Straw Station variable descriptions 
   // Defined in strawStationParameter file that 
@@ -48,7 +48,7 @@ strawtracker_geom : {
   xPositionStraw0_24type:@local::xPositionStraw0_24type
   xPositionStraw0_32type:@local::xPositionStraw0_32type
   yPosition:@local::yPosition
-
+  strawModuleExtension:@local::strawModuleExtension
   //How many views
   strawView: 2
   
