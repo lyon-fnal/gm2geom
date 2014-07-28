@@ -44,6 +44,7 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   type16size( p.get<double>("type16size")),
   type24size( p.get<double>("type24size")),
   type32size( p.get<double>("type32size")),
+  type40size( p.get<double>("type40size")),
   innerRadiusOfTheStraw( p.get<double>("innerRadiusOfTheStraw") ),
   outerRadiusOfTheStraw( p.get<double>("outerRadiusOfTheStraw") ),
   outerRadiusOfTheGas( p.get<double>("outerRadiusOfTheGas") ),
@@ -94,10 +95,12 @@ gm2geom::StrawTrackerGeometry::StrawTrackerGeometry(std::string const & detName)
   strawModuleTypeSize[16] = type16size;
   strawModuleTypeSize[24] = type24size;
   strawModuleTypeSize[32] = type32size;
-  
+  strawModuleTypeSize[40] = type40size;
+  double strawModuleSize = 0;
   for (unsigned int i = 0 ; i < strawModuleType.size() ; i ++){
 
-    strawModuleSizeHalf.push_back((strawModuleTypeSize[strawModuleType[i]]+strawModuleExtension[i])/2); 
+    strawModuleSize = strawModuleTypeSize[strawModuleType[i]]+strawModuleExtension[i];
+    strawModuleSizeHalf.push_back(strawModuleSize/2); 
     distToNextModule = strawModuleWidthHalf + i*(strawModuleWidth + strawModuleSpacing);
     strawModuleLocation.push_back( distToExtFront + vacg.trackerExtWallThick + distToNextModule);
 
@@ -144,6 +147,7 @@ double gm2geom::StrawTrackerGeometry::wireXPosition(WireID wire) const {
   if (type == 16)  x =  xPositionStraw0_16type[innerPlaneNumber];
   if (type == 24)  x =  xPositionStraw0_24type[innerPlaneNumber];
   if (type == 32)  x =  xPositionStraw0_32type[innerPlaneNumber];
+  if (type == 40)  x =  xPositionStraw0_32type[innerPlaneNumber];
   
   x = x + strawModuleExtension[module];
 

@@ -1,6 +1,6 @@
 BEGIN_PROLOG
 
-strawModuleType: [16,16,24,24,24,32,32,32,32]
+strawModuleType: [24,24,24,32,32,32,32,32,32]
 strawModuleWidth: 114
 strawModuleManifoldWidth: 72.37
 strawModuleHeight: 137
@@ -20,5 +20,5 @@ xPositionStraw0_32type: [58.45, 61.47, 73.32, 70.29]
 
 yPosition: [44.33, 49.48, 64.48, 69.67]
 
-strawModuleExtension: [0,0,0,0,0,0,0,0,0]
+strawModuleExtension: [13.16, 13.16, 13.16, 8.51, 8.51, 8.51, 54.08, 54.08, 81.86]
 END_PROLOG

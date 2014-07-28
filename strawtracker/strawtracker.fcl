@@ -4,7 +4,7 @@
 
 //#include "geom/strawStationParameters-nopiping.fcl"
 //#include "geom/strawStationParameters.fcl"
-#include "geom/strawStationParameters-vacuumExt-doublet-variablePlacement.fcl"
+#include "geom/strawStationParameters-vacuumExt-doublet-placement2.fcl"
 
 BEGIN_PROLOG
 
@@ -56,6 +56,7 @@ strawtracker_geom : {
   type16size: 182.00
   type24size: 230.00
   type32size: 278.00
+  type40size: 326.00
 
   //note that the *length* and the height (active area) of the straw 
   //are  determined in the StrawTrackerGeometry File. 

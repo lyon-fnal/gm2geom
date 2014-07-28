@@ -70,6 +70,7 @@ namespace gm2geom {
     double type16size;
     double type24size;
     double type32size;
+    double type40size;
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
