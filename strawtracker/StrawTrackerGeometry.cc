@@ -128,7 +128,7 @@ int gm2geom::StrawTrackerGeometry::InnerRow(WireID wire) const {
 }
 
 int gm2geom::StrawTrackerGeometry::TotalPlane(WireID wire) const {
-  return wire.getModule()*strawView + wire.getView();
+  return wire.getModule()*strawView*strawLayers + InnerRow(wire);
 }
 
 int gm2geom::StrawTrackerGeometry::TotalModuleNumber(WireID wire) const {
