@@ -4,7 +4,7 @@
 
 //#include "geom/strawStationParameters-nopiping.fcl"
 //#include "geom/strawStationParameters.fcl"
-#include "geom/strawStationParameters-vacuumExt-doublet-baseline.fcl"
+#include "geom/strawStationParameters-vacuumExt-doublet-placement1.fcl"
 
 BEGIN_PROLOG
 
