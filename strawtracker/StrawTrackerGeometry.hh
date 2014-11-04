@@ -64,11 +64,13 @@ namespace gm2geom {
     std::vector<double> xPositionStraw0_24type;
     std::vector<double> xPositionStraw0_32type;
     std::vector<double> yPosition;
+    std::vector<double> strawModuleExtension;
 
     int strawView;
     double type16size;
     double type24size;
     double type32size;
+    double type40size;
     // Straw parameters
     double innerRadiusOfTheStraw;
     double outerRadiusOfTheStraw;
